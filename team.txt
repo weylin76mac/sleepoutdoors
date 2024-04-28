@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Trello information:
 https://trello.com/b/lZucHw7R/wdd-330-sleep-outdoors
 
@@ -14,6 +13,3 @@ github1: weylin76mac
 github2: weylin76
 
 
-=======
-Team information: 
->>>>>>> d8f056d52d83b62bf702a637d50ee5f371023351
