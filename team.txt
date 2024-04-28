@@ -1,0 +1,19 @@
+<<<<<<< HEAD
+Trello information:
+https://trello.com/b/lZucHw7R/wdd-330-sleep-outdoors
+
+netlify site:
+https://wdd330team2sleepoutdoors.netlify.app/
+
+Contact Information:
+Weylin Douglas
+email1: Weylin76@msn.com
+email2: Weylin76@icloud.com
+Phone: 517-242-4284
+github1: weylin76mac
+github2: weylin76
+
+
+=======
+Team information: 
+>>>>>>> d8f056d52d83b62bf702a637d50ee5f371023351
