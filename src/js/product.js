@@ -13,6 +13,11 @@ async function addToCartHandler(e) {
   addProductToCart(product);
 }
 
+// Mosiah added this
+const productId = getParem('product');
+console.log(productId);
+console.log(findProductById(productId));
+
 // add listener to Add to Cart button
 document
   .getElementById("addToCart")
