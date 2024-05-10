@@ -1,5 +1,6 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
+import { doc } from "prettier";
 
 
 
@@ -16,8 +17,16 @@ async function addToCartHandler(e) {
 }
 export default async function productDetails(productId) {
   const productData = await findProductById(productId);
-  console.log(productData);
+  document.getElementById("productName").innerText = productData.Name;
+  document.getElementById("productNameWithoutBrand").innerText = productData.NameWithoutBrand;
+  document.getElementById("productImage").src = productData.Image;
+  document.getElementById("productImage").alt = `Name is ${productData.Name}`;
+  document.getElementById("productFinalPrice").innerText = productData.FinalPrice;
+  document.getElementById("productColorName").innerText = productData.Colors[0].ColorName;
+  document.getElementById("productDescriptionHtmlSimple").innerHTML = productData.DescriptionHtmlSimple;
+  document.getElementById("addToCart").dataset.id = productData.Id;
 }
+
 document
   .getElementById("addToCart")
   .addEventListener("click", addToCartHandler);
