@@ -19,10 +19,19 @@ function cartItemTemplate(item) {
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
-  <p class="cart-card__price">$${item.FinalPrice}</p>
+  <p class="cart-card__price"><strong>$${item.FinalPrice}</strong></p>
+  <p>${discount(
+    item.SuggestedRetailPrice,
+    item.FinalPrice
+  )}</p>
 </li>`;
 
   return newItem;
+}
+function discount(SuggestedRetailPrice, FinalPrice) {
+  const priceDifference = SuggestedRetailPrice - FinalPrice;
+  const discPercentage = (priceDifference / SuggestedRetailPrice) * 100;
+  return `<p class="cart-card__discount">${discPercentage.toFixed(0)}% Off</p>`;
 }
 
 renderCartContents();
