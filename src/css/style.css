@@ -202,6 +202,18 @@ button {
   grid-column: 3;
 }
 
+.alert-list {
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.alert-list p {
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
