@@ -26,7 +26,7 @@ export default async function productDetails(productId) {
   document.getElementById("productDescriptionHtmlSimple").innerHTML = productData.DescriptionHtmlSimple;
   document.getElementById("addToCart").dataset.id = productData.Id;
   discount(productData.SuggestedRetailPrice, productData.FinalPrice); 
-  document.querySelector("#tagImage").setAttribute('src', '/images/logos/price-tag.png')
+  document.querySelector("#tagImage").setAttribute("src", "/images/logos/price-tag.png")
 }
 
 document
