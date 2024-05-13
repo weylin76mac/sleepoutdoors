@@ -41,7 +41,7 @@ export default class Alert {
       if (mainElement) {
         mainElement.prepend(this.createAlertSection());
       } else {
-        console.warn('Main element with class .alert-list not found');
+        console.warn("Main element with class .alert-list not found");
       }
     }
   
