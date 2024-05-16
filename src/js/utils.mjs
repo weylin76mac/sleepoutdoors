@@ -23,8 +23,8 @@ export function setClick(selector, callback) {
 }
 
 // Mosiah added this
-export function getParem(parem) {
+export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  return urlParams.get(parem);
+  return urlParams.get(param);
 }
