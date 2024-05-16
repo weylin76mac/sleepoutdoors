@@ -202,6 +202,24 @@ button {
   grid-column: 3;
 }
 
+.cart-card__discount {
+  font-weight: 600;
+  color: rgb(189, 9, 9);
+  font-size: smaller;
+}
+.tag {
+  display: flex;
+  align-items: center;
+  margin-top: -10px;
+}
+
+.product-detail .tag-price {
+  width: 30px;
+  display: flex;
+  margin-left: 8px;
+
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
