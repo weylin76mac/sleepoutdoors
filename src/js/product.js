@@ -5,6 +5,7 @@ function addProductToCart(product) {
   const items = getLocalStorage("so-cart") || [];
   items.push(product);
   setLocalStorage("so-cart", items);
+
 }
 
 // add to cart button event handler
