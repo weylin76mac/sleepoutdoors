@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
@@ -14,11 +14,14 @@ function renderCartContents() {
     return;
   }
 
-  const htmlItems = itemsArray.map((item) => cartItemTemplate(item)).join("");
+  const htmlItems = itemsArray.map((item, index) => cartItemTemplate(item, index)).join("");
   document.querySelector(".product-list").innerHTML = htmlItems;
+
+  // Ensure event listeners are added after rendering the HTML
+  addRemoveItemEventListeners();
 }
 
-function cartItemTemplate(item) {
+function cartItemTemplate(item, index) {
   if (!item || !item.Image || !item.Name || !item.Colors || !item.Colors.length || !item.FinalPrice) {
     console.error("Error: item has missing or incorrect properties.", item);
     return "";
@@ -34,11 +37,28 @@ function cartItemTemplate(item) {
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
     <p class="cart-card__quantity">qty: 1</p>
     <p class="cart-card__price">$${item.FinalPrice}</p>
+    <button class="remove-item btn-style" data-index="${index}">X</button>
   </li>`;
 
   return newItem;
 }
 
+function addRemoveItemEventListeners() {
+  const removeButtons = document.querySelectorAll(".remove-item");
+  removeButtons.forEach(button => {
+    button.addEventListener("click", removeItemFromCart);
+  });
+}
+
+function removeItemFromCart(event) {
+  const index = event.target.dataset.index;
+  let cartItems = getLocalStorage("so-cart") || [];
+  cartItems.splice(index, 1); // Remove the item at the given index
+  setLocalStorage("so-cart", cartItems);
+  renderCartContents(); // Re-render the cart contents
+}
+
 renderCartContents();
+
 
 

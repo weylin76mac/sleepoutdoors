@@ -214,6 +214,11 @@ button {
   font-size: 1em;
 }
 
+.cart-card{
+  display: flex; 
+  justify-content: space-evenly;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
