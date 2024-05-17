@@ -1,6 +1,6 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
-import { doc } from "prettier";
+import { discount } from "./productList.mjs";
 
 
 
@@ -30,17 +30,10 @@ export default async function productDetails(productId) {
   document.querySelector(".cart-card__discount").innerHTML = `${discount(
     productData.SuggestedRetailPrice,
     productData.FinalPrice
-  ).toFixed(0)}% Off`;
+  )}% Off`;
 }
 
 document
   .getElementById("addToCart")
   .addEventListener("click", addToCartHandler);
 
- export function discount(SuggestedRetailPrice, FinalPrice) {
-   const priceDifference = SuggestedRetailPrice - FinalPrice;
-   const discPercentage = (priceDifference / SuggestedRetailPrice) * 100;
-   return discPercentage
-   
-   
- } 
