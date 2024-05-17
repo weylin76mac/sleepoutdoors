@@ -25,19 +25,22 @@ export default async function productDetails(productId) {
   document.getElementById("productColorName").innerText = productData.Colors[0].ColorName;
   document.getElementById("productDescriptionHtmlSimple").innerHTML = productData.DescriptionHtmlSimple;
   document.getElementById("addToCart").dataset.id = productData.Id;
-  discount(productData.SuggestedRetailPrice, productData.FinalPrice); 
+   
   document.querySelector("#tagImage").setAttribute("src", "/images/logos/price-tag.png")
+  document.querySelector(".cart-card__discount").innerHTML = `${discount(
+    productData.SuggestedRetailPrice,
+    productData.FinalPrice
+  ).toFixed(0)}% Off`;
 }
 
 document
   .getElementById("addToCart")
   .addEventListener("click", addToCartHandler);
 
- function discount(SuggestedRetailPrice, FinalPrice) {
+ export function discount(SuggestedRetailPrice, FinalPrice) {
    const priceDifference = SuggestedRetailPrice - FinalPrice;
    const discPercentage = (priceDifference / SuggestedRetailPrice) * 100;
-   document.querySelector(
-     ".cart-card__discount"
-   ).innerText = `${discPercentage.toFixed(0)}% Off`;
+   return discPercentage
+   
    
  } 
