@@ -4,6 +4,25 @@ function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  cartTotal(cartItems)
+}
+
+// Calculate the $total in the cart. If cart its empty the word total 
+// is removed, else gets inserted with total.
+function cartTotal(items) {
+  let sum = 0;
+  for (let i = 0; i < items.length; i++) {
+    let listItems = items[i];
+    let r = listItems.FinalPrice;
+    sum += r;
+  }
+  let total = document.querySelector(".cart-card__total");
+  if (sum === 0) {
+    total.style.display = "none";
+  } else {
+    total.style.display = "block";
+    total.innerHTML = `<strong>Total: $${sum.toFixed(2)}</strong>`;
+  }
 }
 
 
