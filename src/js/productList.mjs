@@ -1,6 +1,9 @@
 import { getData } from "./productData.mjs";
 import { renderListWithTemplate } from "./utils.mjs";
 
+function filterTents(products) {
+  return products.slice(0, 4); // Slice the products array to include only the first 4 items. Later if we want to select random we can change.
+}
 
 function productCardTemplate(product) {
     return `<li class="product-card">
@@ -20,8 +23,8 @@ export default async function productList(selector, category) {
     const element = document.querySelector(selector);
     // get the list of products 
     const product = await getData(category);
-    console.log(product);
+    const tents = filterTents(product) // call the function passing the list of tents
     // render out the product list to the element
-    renderListWithTemplate(productCardTemplate, element, product);
+    renderListWithTemplate(productCardTemplate, element, tents);
 }
 
