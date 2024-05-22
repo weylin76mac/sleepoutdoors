@@ -1,13 +1,26 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart") || [];
-  const htmlItems = cartItems.map((item, index) => cartItemTemplate(item, index));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
-  cartTotal(cartItems);
+  const cartItems = getLocalStorage("so-cart");
+
+  // Handle both cases: single object or array of objects
+  let itemsArray = [];
+  if (Array.isArray(cartItems)) {
+    itemsArray = cartItems;
+  } else if (cartItems && typeof cartItems === "object") {
+    itemsArray = [cartItems];
+  } else {
+    console.error("Error: Unexpected cartItems format.", cartItems);
+    return;
+  }
+
+  const htmlItems = itemsArray.map((item, index) => cartItemTemplate(item, index)).join("");
+  document.querySelector(".product-list").innerHTML = htmlItems;
+
   // Ensure event listeners are added after rendering the HTML
   addRemoveItemEventListeners();
 }
+
 
 // Calculate the $total in the cart. If cart its empty the word total 
 // is removed, else gets inserted with total.
@@ -27,21 +40,25 @@ function cartTotal(items) {
   }
 }
 
+
 function cartItemTemplate(item, index) {
+  if (!item || !item.Image || !item.Name || !item.Colors || !item.Colors.length || !item.FinalPrice) {
+    console.error("Error: item has missing or incorrect properties.", item);
+    return "";
+  }
+
   const newItem = `<li class="cart-card divider">
     <a href="#" class="cart-card__image">
-      <img
-        src="${item.Image}"
-        alt="${item.Name}"
-      />
+      <img src="${item.Image}" alt="${item.Name}" />
+
     </a>
     <a href="#">
       <h2 class="card__name">${item.Name}</h2>
     </a>
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
     <p class="cart-card__quantity">qty: 1</p>
-    <p class="cart-card__price"><strong>$${item.FinalPrice}</strong></p>
-    <button class="remove-item" data-index="${index}">Delete</button>
+    <p class="cart-card__price">$${item.FinalPrice}</p>
+    <button class="remove-item btn-style" data-index="${index}">X</button>
   </li>`;
 
   return newItem;
@@ -63,3 +80,6 @@ function removeItemFromCart(event) {
 }
 
 renderCartContents();
+
+
+

@@ -238,6 +238,7 @@ button {
   grid-column: 3;
 }
 
+
 .cart-card__discount {
   font-weight: 600;
   color: rgb(189, 9, 9);
@@ -261,6 +262,8 @@ button {
   padding: 2%;
 }
 
+
+
 .alert-list {
   padding: 10px;
   margin: 10px 0;
@@ -271,6 +274,12 @@ button {
   margin: 5px 0;
   border-radius: 5px;
   font-size: 1em;
+}
+
+
+.cart-card{
+  display: flex; 
+  justify-content: space-evenly;
 }
 
 
