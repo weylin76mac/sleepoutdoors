@@ -1,16 +1,9 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
-import { findProductById } from "./productData.mjs";
+import { getParam } from "./utils.mjs";
+import productDetails from "./productDetails.mjs";
 
-function addProductToCart(product) {
-  //Because localStorage only deals with strings, and we have an object, we set getLocalStorage to default to an array, then push the product to the array. Same process repeated in cart.js
-  const currCart = getLocalStorage("so-cart") || [];
-  currCart.push(product);
-  setLocalStorage("so-cart", currCart);
-}
-// add to cart button event handler
-async function addToCartHandler(e) {
-  const product = await findProductById(e.target.dataset.id);
-  addProductToCart(product);
-}
+
+// Mosiah added this
+const productId = getParam("product");
+productDetails(productId);
 
 // add listener to Add to Cart button
