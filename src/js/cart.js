@@ -1,17 +1,10 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, loadHeaderFooter } from "./utils.mjs";
+import { shoppingCart } from "./shoppingCart.mjs";
 
-function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart") || [];
-  const htmlItems = cartItems.map((item, index) => cartItemTemplate(item, index));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
-  cartTotal(cartItems);
-  // Ensure event listeners are added after rendering the HTML
-  addRemoveItemEventListeners();
-}
 
 // Calculate the $total in the cart. If cart its empty the word total 
 // is removed, else gets inserted with total.
-function cartTotal(items) {
+export function cartTotal(items) {
   let sum = 0;
   for (let i = 0; i < items.length; i++) {
     let listItems = items[i];
@@ -27,27 +20,7 @@ function cartTotal(items) {
   }
 }
 
-function cartItemTemplate(item, index) {
-  const newItem = `<li class="cart-card divider">
-    <a href="#" class="cart-card__image">
-      <img
-        src="${item.Image}"
-        alt="${item.Name}"
-      />
-    </a>
-    <a href="#">
-      <h2 class="card__name">${item.Name}</h2>
-    </a>
-    <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-    <p class="cart-card__quantity">qty: 1</p>
-    <p class="cart-card__price"><strong>$${item.FinalPrice}</strong></p>
-    <button class="remove-item" data-index="${index}">Delete</button>
-  </li>`;
-
-  return newItem;
-}
-
-function addRemoveItemEventListeners() {
+export function addRemoveItemEventListeners() {
   const removeButtons = document.querySelectorAll(".remove-item");
   removeButtons.forEach(button => {
     button.addEventListener("click", removeItemFromCart);
@@ -55,14 +28,16 @@ function addRemoveItemEventListeners() {
 }
 
 function removeItemFromCart(event) {
+  console.log("Clicked Delete Button");
   const index = event.target.dataset.index;
   let cartItems = getLocalStorage("so-cart") || [];
   cartItems.splice(index, 1); // Remove the item at the given index
   setLocalStorage("so-cart", cartItems);
-  renderCartContents(); // Re-render the cart contents
+  shoppingCart(); // Re-render the cart contents
 }
 
-renderCartContents();
-
+loadHeaderFooter();
+// renderCartContents();
+shoppingCart();
 
 
