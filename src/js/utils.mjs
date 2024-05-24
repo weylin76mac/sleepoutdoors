@@ -81,3 +81,61 @@ export async function loadHeaderFooter() {
   renderWithTemplate(headerTemplateFn, headerEl);
   renderWithTemplate(footerTemplateFn, footerEl);
 }
+
+function removeClass(element, className){ //create a function that takes a thing
+  element.classList.remove(className); //and removes the class className from it
+};
+
+export function addClass(element, className, duration = 0){ //create a function that takes a thing
+  element.classList.add(className); //and gives the class to the thing
+  if (duration != 0) {
+  setTimeout(removeClass, duration, element, className)//set a timeout to remove the class from the thing x (default 0) seconds later
+  }
+};
+
+export function sendBallAnimation(from, to, ballSize = 20) {
+  let fromRect = from.getBoundingClientRect();
+  let toRect = to.getBoundingClientRect();
+  var ball = document.createElement("div");
+  ball.classList.add("ball");
+  ball.style.cssText = `
+    position: absolute;
+    left: var(--button-x);
+    top: var(--button-y);
+    width: ${ballSize}px;
+    height: ${ballSize}px;
+    background-color: #525b0f;
+    border-radius: 50%;
+    animation: moveToCartX 1s ease-in-out forwards, moveToCartY 1s ease-in-out forwards;
+    z-index: 1;
+    display: none;
+    --to-x: ${toRect.x}px;
+    --from-x: ${fromRect.x}px;
+    --to-y: ${toRect.y}px;
+    --from-y: ${fromRect.y + (.5 * ballSize)}px;
+  `;
+  
+  document.body.appendChild(ball);
+  
+  setTimeout(function() {
+    ball.style.display = "block"; // Show the ball after a short delay
+  }, 10);
+  setTimeout(function() {
+    ball.remove(); // Make the ball disappear after 1.1 seconds
+  }, 1100);
+}
+
+function maintainWidth(element) { //function to ensure the button stays the same size
+  let rect = element.getBoundingClientRect(); // Get the paramaters of the button
+  element.style.setProperty("width", rect.width + "px") //Set the button to a fixed width
+}
+
+export function replaceText(element, text, duration) {
+  let originalText = element.innerText;
+  maintainWidth(element);
+  element.innerText = text;
+  setTimeout(function() {
+    element.innerText = originalText;
+  }, duration);
+  addClass(element, "clicked", duration);
+}

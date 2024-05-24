@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, addClass, sendBallAnimation, replaceText } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
 import { discount } from "./productList.mjs";
 
@@ -14,7 +14,18 @@ function addProductToCart(product) {
 async function addToCartHandler(e) {
   const product = await findProductById(e.target.dataset.id);
   addProductToCart(product);
-}
+  sendBallAnimation(document.getElementById("addToCart"), document.querySelector("svg"));
+
+  replaceText(
+    document.getElementById("addToCart"),
+    "Added!",
+    2000
+  );
+  setTimeout(function() {
+      addClass(document.querySelector(".cart"), "sproing", 1200); //make the cart icon sproing after 1.1 seconds
+  }, 1100)
+};
+
 export default async function productDetails(productId) {
   const productData = await findProductById(productId);
   document.getElementById("productName").innerText = productData.Brand.Name;
