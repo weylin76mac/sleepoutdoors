@@ -1,13 +1,8 @@
 :root {
   --font-body: Arial, Helvetica, sans-serif;
   --font-headline: Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  --font-subheadings: system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',    
-    'Open Sans',
-    'Helvetica Neue',
-    sans-serif;
+  --font-subheadings: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Open Sans", "Helvetica Neue", sans-serif;
   /* colors */
   --primary-color: #f0a868;
   --secondary-color: #525b0f;
@@ -47,23 +42,23 @@ header {
   text-align: right;
   font-family: var(--font-headline);
   & img {
-      width: 60px;
-      height: 60px;
-    }
-    & a {
-      text-decoration: none;
-      color: var(--font-body);
-    }
+    width: 60px;
+    height: 60px;
+  }
+  & a {
+    text-decoration: none;
+    color: var(--font-body);
+  }
 }
 
 .hero {
   position: relative;
   & .logo {
-      position: absolute;
-      left: calc(50% - 60px);
-      bottom: -10px;
-      background-color: white;
-    }
+    position: absolute;
+    left: calc(50% - 60px);
+    bottom: -10px;
+    background-color: white;
+  }
 }
 
 .logo--square {
@@ -78,13 +73,13 @@ header {
   align-items: center;
   line-height: 1;
   & img {
-      width: 90px;
-      height: 90px;
-      margin-top: -1.3em;
-    }
-    &>div {
-      margin-top: -1.7em;
-    }
+    width: 90px;
+    height: 90px;
+    margin-top: -1.3em;
+  }
+  & > div {
+    margin-top: -1.7em;
+  }
 }
 
 /* utility classes */
@@ -101,12 +96,20 @@ button {
   border: 0;
   font-size: var(--large-font);
   cursor: pointer;
+  position: relative;
+  z-index: 2;
+  transition: all 0.35s ease;
   &:hover {
-      color: white;
-      background-color: var(--hover);
-      transition: all .3s ease;
-    }
+    color: white;
+    background-color: var(--hover);
+    transition: all 0.3s ease;
+  }
 }
+
+button.clicked {
+  filter: brightness(140%);
+}
+
 .divider {
   border-bottom: 3px solid var(--dark-green);
 }
@@ -119,17 +122,16 @@ button {
   text-align: center;
 
   & svg {
-      width: 28px;
-      stroke: var(--primary-color);
-    }
-    & a {
-      text-decoration: none;
-    }
+    width: 28px;
+    stroke: var(--primary-color);
+  }
+  & a {
+    text-decoration: none;
+  }
 }
 .cart:hover svg {
   fill: var(--secondary-color);
 }
-
 
 /* End cart icon styles */
 
@@ -151,9 +153,9 @@ button {
   padding: 2%;
   gap: 20px;
   & a {
-      text-decoration: none;
-      color: var(--dark-grey);
-    }
+    text-decoration: none;
+    color: var(--dark-grey);
+  }
 }
 
 /* Styles for product lists */
@@ -165,12 +167,11 @@ button {
   max-width: 250px;
   gap: 10px;
   & h2,
-    h3,
-    p {
-      margin: 0.5em;
-    }
+  h3,
+  p {
+    margin: 0.5em;
+  }
 }
-
 
 .card__brand {
   font-size: var(--small-font);
@@ -187,7 +188,7 @@ button {
   max-width: 500px;
   margin: auto;
   & img {
-      width: 100%;
+    width: 100%;
   }
 }
 
@@ -200,10 +201,10 @@ button {
   align-items: center;
   width: 100%;
   padding: 2%;
-  background-color: #D1D3C5;
+  background-color: #d1d3c5;
   &:hover {
     box-shadow: 0 0 10px black;
-    transition: all .2s ease;
+    transition: all 0.2s ease;
   }
 }
 
@@ -238,7 +239,6 @@ button {
   grid-column: 3;
 }
 
-
 .cart-card__discount {
   font-weight: 600;
   color: rgb(189, 9, 9);
@@ -254,15 +254,12 @@ button {
   width: 30px;
   display: flex;
   margin-left: 8px;
-
 }
 .cart-card__total {
   float: right;
   clear: both;
   padding: 2%;
 }
-
-
 
 .alert-list {
   padding: 10px;
@@ -276,12 +273,54 @@ button {
   font-size: 1em;
 }
 
-
-.cart-card{
-  display: flex; 
+.cart-card {
+  display: flex;
   justify-content: space-evenly;
 }
 
+.sproing {
+  animation: sproing 0.8s ease-in-out forwards;
+}
+
+@keyframes sproing {
+  25% {
+    transform: translateX(15px);
+  }
+  50% {
+    transform: translateX(-12px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveToCartX {
+  0% {
+    left: var(--from-x);
+  }
+  100% {
+    left: var(--to-x);
+  }
+}
+
+@keyframes moveToCartY {
+  0% {
+    top: var(--from-y);
+  }
+  50% {
+    top: var(--from-y);
+  }
+  70% {
+    opacity: 0.7;
+  }
+  100% {
+    top: var(--to-y);
+    opacity: 0.2;
+  }
+}
 
 @media screen and (min-width: 500px) {
   body {

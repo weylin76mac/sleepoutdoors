@@ -1,12 +1,12 @@
 [
-    {
-      "message": "This is a message.",
-      "background": "darkblue",
-      "color": "white"
-    }
-    ,{
-      "message": "Another great message.",
-      "background": "red",
-      "color": "white"
-    }
-  ]
+  {
+    "message": "This is a message.",
+    "background": "darkblue",
+    "color": "white"
+  },
+  {
+    "message": "Another great message.",
+    "background": "red",
+    "color": "white"
+  }
+]
