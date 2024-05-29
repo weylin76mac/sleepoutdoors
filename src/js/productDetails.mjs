@@ -7,8 +7,16 @@ import { discount } from "./productList.mjs";
 function addProductToCart(product) {
   //Because localStorage only deals with strings, and we have an object, we set getLocalStorage to default to an array, then push the product to the array. Same process repeated in cart.js
   const currCart = getLocalStorage("so-cart") || [];
-  currCart.push(product);
-  setLocalStorage("so-cart", currCart);
+
+  // Check Cart for Duplicate products:
+  const existingProductIndex = currCart.findIndex( //Check if product is already in cart by comparing the products Id.
+    (item) => item.Id === product.Id               // FindIndex returns the index of the product if exists, or -1 if it doesn't.
+  )
+
+  if (existingProductIndex === -1) {
+    currCart.push(product);
+    setLocalStorage("so-cart", currCart);
+  } 
 }
 // add to cart button event handler
 async function addToCartHandler(e) {
