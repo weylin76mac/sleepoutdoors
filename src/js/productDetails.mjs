@@ -26,6 +26,7 @@ async function addToCartHandler(e) {
   }, 1100)
 };
 
+// Mosiah changed the way we look at Product details to look for in display if the information looked for is not found 
 export default async function productDetails(productId) {
   try {
     const productData = await findProductById(productId);
@@ -40,10 +41,8 @@ export default async function productDetails(productId) {
       }
       return;
     }
-
     
-    
-    // Populate product details
+    // Populating product details Providing alternate titles/values, if information is not found 
     document.getElementById("productName").innerText = productData.Brand?.Name || "N/A";
     document.getElementById("productNameWithoutBrand").innerText = productData.NameWithoutBrand || "N/A";
     document.getElementById("productImage").src = productData.Image || "";
@@ -66,8 +65,7 @@ export default async function productDetails(productId) {
 }
 
 function displayErrorMessage(message) {
-  // Display error message to the user, you can customize this based on your UI
-  alert(message); // Example: Showing an alert box with the error message
+  alert(message); 
 }
 
 document
