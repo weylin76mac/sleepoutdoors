@@ -139,3 +139,4 @@ export function replaceText(element, text, duration) {
   }, duration);
   addClass(element, "clicked", duration);
 }
+

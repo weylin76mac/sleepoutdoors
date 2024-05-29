@@ -27,21 +27,47 @@ async function addToCartHandler(e) {
 };
 
 export default async function productDetails(productId) {
-  const productData = await findProductById(productId);
-  document.getElementById("productName").innerText = productData.Brand.Name;
-  document.getElementById("productNameWithoutBrand").innerText = productData.NameWithoutBrand;
-  document.getElementById("productImage").src = productData.Image;
-  document.getElementById("productImage").alt = `Name is ${productData.Name}`;
-  document.getElementById("productFinalPrice").innerHTML = `<strong>$${productData.FinalPrice}</strong>`;
-  document.getElementById("productColorName").innerText = productData.Colors[0].ColorName;
-  document.getElementById("productDescriptionHtmlSimple").innerHTML = productData.DescriptionHtmlSimple;
-  document.getElementById("addToCart").dataset.id = productData.Id;
-   
-  document.querySelector("#tagImage").setAttribute("src", "/images/logos/price-tag.png")
-  document.querySelector(".cart-card__discount").innerHTML = `${discount(
-    productData.SuggestedRetailPrice,
-    productData.FinalPrice
-  )}% Off`;
+  try {
+    const productData = await findProductById(productId);
+    if (!productData) {
+      // Product not found, handle the error gracefully
+
+      displayErrorMessage("Product not found");
+
+      const addToCartButton = document.getElementById("addToCart");
+      if (addToCartButton) {
+        addToCartButton.style.display = "none";
+      }
+      return;
+    }
+
+    
+    
+    // Populate product details
+    document.getElementById("productName").innerText = productData.Brand?.Name || "N/A";
+    document.getElementById("productNameWithoutBrand").innerText = productData.NameWithoutBrand || "N/A";
+    document.getElementById("productImage").src = productData.Image || "";
+    document.getElementById("productImage").alt = `Name is ${productData.Name || "N/A"}`;
+    document.getElementById("productFinalPrice").innerHTML = `<strong>$${productData.FinalPrice || 0}</strong>`;
+    document.getElementById("productColorName").innerText = productData.Colors?.[0]?.ColorName || "N/A";
+    document.getElementById("productDescriptionHtmlSimple").innerHTML = productData.DescriptionHtmlSimple || "N/A";
+    document.getElementById("addToCart").dataset.id = productData.Id;
+
+    document.querySelector("#tagImage").setAttribute("src", "/images/logos/price-tag.png");
+    document.querySelector(".cart-card__discount").innerHTML = `${discount(
+      productData.SuggestedRetailPrice || 0,
+      productData.FinalPrice || 0
+    )}% Off`;
+  } catch (error) {
+    // Handle any unexpected errors
+    console.error("Error fetching product details:", error);
+    displayErrorMessage("An error occurred while fetching product details");
+  }
+}
+
+function displayErrorMessage(message) {
+  // Display error message to the user, you can customize this based on your UI
+  alert(message); // Example: Showing an alert box with the error message
 }
 
 document
