@@ -60,7 +60,7 @@ export default async function productDetails(productId) {
   } catch (error) {
     // Handle any unexpected errors
     console.error("Error fetching product details:", error);
-    displayErrorMessage("An error occurred while fetching product details");
+    displayErrorMessage("An error has occurred while fetching product details");
   }
 }
 
