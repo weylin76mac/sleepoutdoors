@@ -32,7 +32,11 @@ export default async function productList(selector, category) {
     // get the list of products 
     const product = await getData(category);
     const tents = filterTents(product) // call the function passing the list of tents
+    console.log(product);
     // render out the product list to the element
     renderListWithTemplate(productCardTemplate, element, tents);
+    document.querySelector(".title").innerHTML = category;
 }
+
+
 
