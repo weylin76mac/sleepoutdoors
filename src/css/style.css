@@ -185,6 +185,7 @@ button.clicked {
 
 .product-detail {
   padding: 1em;
+  display: flex;
   max-width: 500px;
   margin: auto;
   & img {

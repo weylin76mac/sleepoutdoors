@@ -17,6 +17,7 @@ function addToCart() {
   if (!cartContents) {
     cartContents = [];
   }
+  
   // then add the current product to the list
   cartContents.push(product);
   setLocalStorage("so-cart", cartContents);
@@ -34,4 +35,16 @@ function renderProductDetails() {
     product.DescriptionHtmlSimple;
   document.querySelector("#addToCart").dataset.id = product.Id;
 }
+
+// function removeDuplicates(item) {
+//    const existingProductIndex = currCart.findIndex(
+//      (item) => item.Id === product.Id
+//    );
+
+//    if (existingProductIndex !== -1) {
+//    } else {
+//      // If the product is not in the cart, add it to the cart array
+//      return product;
+//    }
+// }
 
