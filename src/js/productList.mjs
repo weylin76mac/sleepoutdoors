@@ -22,29 +22,53 @@ function productCardTemplate(product) {
 
 export default async function productList(selector, category) {
     const element = document.querySelector(selector);
-    const brandList = document.getElementById('brandList');
+    const brandList = document.getElementById("brandList");
 
     // Fetch the list of products
     let products = await getData(category);
     console.log(products);
 
     // Function to get unique brands from products and sort them alphabetically
-    function getSortedBrands(products) {
-        const brands = [...new Set(products.map(product => product.Brand?.Name).filter(Boolean))];
-        return brands.sort();
+    function getSortedBrands(sortedProducts) {
+        let brandNames = [];
+        for (let i = 0; i < sortedProducts.length; i++) {
+        if (sortedProducts[i].Brand && sortedProducts[i].Brand.Name) {
+        brandNames.push(sortedProducts[i].Brand.Name);
     }
+    }
+    let uniqueBrandNames = [];
+    let brandNameSet = new Set();
+    
+    for (let i = 0; i < brandNames.length; i++) {
+        if (!brandNameSet.has(brandNames[i])) {
+            brandNameSet.add(brandNames[i]);
+            uniqueBrandNames.push(brandNames[i]);
+        }
+    }
+    
+    let validBrandNames = [];
+
+    for (let i = 0; i < uniqueBrandNames.length; i++) {
+        if (uniqueBrandNames[i]) { // Check if the value is not undefined or null
+        validBrandNames.push(uniqueBrandNames[i]);
+    }
+    }
+
+        return validBrandNames.sort(); // Sort the brand names alphabetically
+    }
+    
 
     // Function to render brand list
     function renderBrandList(brands) {
-        const allButton = document.createElement('button');
-        allButton.textContent = 'All';
-        allButton.addEventListener('click', () => renderListWithTemplate(productCardTemplate, element, products));
+        const allButton = document.createElement("button");
+        allButton.textContent = "All";
+        allButton.addEventListener("click", () => renderListWithTemplate(productCardTemplate, element, products));
         brandList.appendChild(allButton);
 
         brands.forEach(brand => {
-            const brandElement = document.createElement('button');
+            const brandElement = document.createElement("button");
             brandElement.textContent = brand;
-            brandElement.addEventListener('click', () => filterByBrand(brand));
+            brandElement.addEventListener("click", () => filterByBrand(brand));
             brandList.appendChild(brandElement);
         });
     }
