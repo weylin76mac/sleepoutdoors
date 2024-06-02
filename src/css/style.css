@@ -323,6 +323,73 @@ button.clicked {
   }
 }
 
+/* Product list option enhancement */
+/* Style for the brand list container */
+#brandListContainer {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Style for the brand buttons */
+#brandList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+#brandList button {
+  background-color: #2e8b57; /* Sea Green */
+  border: 2px solid #556b2f; /* Dark Olive Green */
+  border-radius: 5px;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#brandList button:hover {
+  background-color: #3cb371; /* Medium Sea Green */
+  transform: scale(1.05);
+}
+
+#brandList button:active {
+  background-color: #2e8b57; /* Sea Green */
+  transform: scale(0.95);
+}
+
+/* Style for the product list */
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.product-list .product-card {
+  list-style-type: none;
+  width: 200px;
+  margin: 10px;
+}
+
+.product-list .product-card img {
+  width: 100%;
+  height: auto;
+}
+
+.product-list .product-card h3,
+.product-list .product-card h2,
+.product-list .product-card p {
+  margin: 5px 0;
+  text-align: center;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
