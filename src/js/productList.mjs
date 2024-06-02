@@ -8,20 +8,27 @@ export function discount(SuggestedRetailPrice, FinalPrice) {
 }
 
 function productCardTemplate(product) {
-    const disc = discount(product.SuggestedRetailPrice, product.FinalPrice);
-    return `<li class="product-card">
-        <a href="product_pages/index.html?product=${product.Id}">
-            <img src="${product.Images.PrimaryExtraLarge}" alt="Image of ${product.Name}" />
-            <h3 class="card__brand">${product.Brand.Name}</h3>
-            <h2 class="card__name">${product.NameWithoutBrand}</h2>
-            <p class="product-card__price">$${product.FinalPrice}</p>
-            <p class="cart-card__discount">${disc}% Off. Save Today!</p>
-        </a>
-    </li>`;
-}
+
+  const disc = discount(product.SuggestedRetailPrice,product.FinalPrice)
+ 
+    return `
+    <li class="product-card">
+      <a href="/product_pages/index.html?product=${product.Id}">
+      <img
+        src="${product.Images.PrimaryMedium}"
+        alt="Image of ${product.Name}"
+      />
+      <h3 class="card__brand">${product.Brand.Name}</h3>
+      <h2 class="card__name">${product.NameWithoutBrand}</h2>
+      <p class="product-card__price">$${product.FinalPrice}</p>
+      <p class= "cart-card__discount">${disc}% Off. Save Today!</p></a>
+    </li>
+    `;
+  }
 
 export default async function productList(selector, category) {
     const element = document.querySelector(selector);
+
     const brandList = document.getElementById("brandList");
 
     // Fetch the list of products
