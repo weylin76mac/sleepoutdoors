@@ -1,50 +1,58 @@
 import { findProductById } from "./productData.mjs";
-import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, addClass, sendBallAnimation, replaceText } from "./utils.mjs";
 
-let product = {};
+let products = {};
 
 export default async function productDetails(productId) {
-  // get the details for the current product. findProductById will return a promise! use await or .then() to process it
-  product = await findProductById(productId);
-  // once we have the product details we can render out the HTML
+  // get the details for the current products. findProductById will return a promise! use await or .then() to process it
+  products = await findProductById(productId);
+  // once we have the products details we can render out the HTML
   renderProductDetails();
   // once the HTML is rendered we can add a listener to Add to Cart button
   document.getElementById("addToCart").addEventListener("click", addToCart);
-}
-function addToCart() {
-  let cartContents = getLocalStorage("so-cart");
-  //check to see if there was anything there
-  if (!cartContents) {
-    cartContents = [];
-  }
   
-  // then add the current product to the list
-  cartContents.push(product);
-  setLocalStorage("so-cart", cartContents);
 }
+
+function addToCart() {
+  const currCart = getLocalStorage("so-cart") || [];
+  animateAddToCart();
+  checkDuplicates(currCart);
+}
+
 function renderProductDetails() {
-  document.querySelector("#productName").innerText = product.Brand.Name;
+  document.querySelector("#productName").innerText = products.Brand.Name;
   document.querySelector("#productNameWithoutBrand").innerText =
-    product.NameWithoutBrand;
-  document.querySelector("#productImage").src = product.Images.PrimaryLarge;
-  document.querySelector("#productImage").alt = product.Name;
-  document.querySelector("#productFinalPrice").innerText = product.FinalPrice;
+    products.NameWithoutBrand;
+  document.querySelector("#productImage").src = products.Images.PrimaryLarge;
+  document.querySelector("#productImage").alt = products.Name;
+  document.querySelector("#productFinalPrice").innerText = products.FinalPrice;
   document.querySelector("#productColorName").innerText =
-    product.Colors[0].ColorName;
+    products.Colors[0].ColorName;
   document.querySelector("#productDescriptionHtmlSimple").innerHTML =
-    product.DescriptionHtmlSimple;
-  document.querySelector("#addToCart").dataset.id = product.Id;
+    products.DescriptionHtmlSimple;
+  document.querySelector("#addToCart").dataset.id = products.Id;
 }
 
-// function removeDuplicates(item) {
-//    const existingProductIndex = currCart.findIndex(
-//      (item) => item.Id === product.Id
-//    );
+function animateAddToCart() {
+  sendBallAnimation(document.getElementById("addToCart"), document.querySelector("svg"));
+  replaceText(
+    document.getElementById("addToCart"),
+    "Added!",
+    2000
+  );
+  setTimeout(function() {
+      addClass(document.querySelector(".cart"), "sproing", 1200); //make the cart icon sproing after 1.1 seconds
+  }, 1100);
+}
 
-//    if (existingProductIndex !== -1) {
-//    } else {
-//      // If the product is not in the cart, add it to the cart array
-//      return product;
-//    }
-// }
+function checkDuplicates(currCart) {
+  // Check Cart for Duplicate products:
+  const existingProductIndex = currCart.findIndex( //Check if products is already in cart by comparing the products Id.
+    (item) => item.Id === products.Id               // FindIndex returns the index of the products if exists, or -1 if it doesn't.
+  )
 
+  if (existingProductIndex === -1) {
+    currCart.push(products);
+    setLocalStorage("so-cart", currCart);
+  } 
+}

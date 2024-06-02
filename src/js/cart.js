@@ -39,5 +39,5 @@ function removeItemFromCart(event) {
   shoppingCart(); // Re-render the cart contents
 }
 
-loadHeaderFooter();
+loadHeaderFooter(); 
 shoppingCart();
