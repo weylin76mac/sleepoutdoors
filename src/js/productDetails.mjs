@@ -22,13 +22,15 @@ function addToCart() {
 }
 
 function renderProductDetails() {
-  
+  let priceFixed = products.FinalPrice.toFixed(2)
   document.querySelector("#productName").innerHTML = products.Brand.Name;
   document.querySelector("#productNameWithoutBrand").innerHTML =
     products.NameWithoutBrand;
   document.querySelector("#productImage").src = products.Images.PrimaryMedium;
   document.querySelector("#productImage").alt = products.Name;
-  document.querySelector("#productFinalPrice").innerHTML = `<strong>$${products.FinalPrice}</strong>`;
+  document.querySelector(
+    "#productFinalPrice"
+  ).innerHTML = `<strong>$${priceFixed}</strong>`;
   let discounts = discount(products.SuggestedRetailPrice, products.FinalPrice)
   document.querySelector(
     ".cart-card__discount"
