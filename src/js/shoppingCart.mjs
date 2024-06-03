@@ -7,17 +7,18 @@ export function shoppingCart() {
   renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
   addRemoveItemEventListeners();
   cartTotal(cartItems);
+  console.log(cartItems)
 }
 
  function cartItemTemplate(item, index) {
   const newItem = `<li class="cart-card divider">
-    <a href="#" class="cart-card__image">
+    <a href="/product_pages/index.html?product=${item.Id}" class="cart-card__image">
       <img
         src="${item.Images.PrimarySmall}"
         alt="${item.Name}"
       />
     </a>
-    <a href="#">
+    <a href="/product_pages/index.html?product=${item.Id}">
       <h2 class="card__name">${item.Name}</h2>
     </a>
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>

@@ -139,3 +139,14 @@ export function replaceText(element, text, duration) {
   }, duration);
   addClass(element, "clicked", duration);
 }
+
+// capitalize first letter of a word function
+export function capitalize(word) {
+   return word.charAt(0).toUpperCase() + word.slice(1)};
+
+// Price discount
+export function discount(SuggestedRetailPrice, FinalPrice) {
+  const priceDifference = SuggestedRetailPrice - FinalPrice;
+  const discPercentage = (priceDifference / SuggestedRetailPrice) * 100;
+  return discPercentage.toFixed(0);
+}   

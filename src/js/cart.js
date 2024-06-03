@@ -1,7 +1,6 @@
 import {
   getLocalStorage,
   setLocalStorage,
-  loadHeaderFooter,
 } from "./utils.mjs";
 import { shoppingCart } from "./shoppingCart.mjs";
 
@@ -39,5 +38,5 @@ function removeItemFromCart(event) {
   shoppingCart(); // Re-render the cart contents
 }
 
-loadHeaderFooter(); 
+// loadHeaderFooter(); 
 shoppingCart();

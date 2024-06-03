@@ -154,7 +154,7 @@ button.clicked {
   gap: 20px;
   & a {
     text-decoration: none;
-    color: var(--dark-grey);
+    color: var(--dark-green);
   }
 }
 
@@ -163,13 +163,18 @@ button.clicked {
   flex: 1 1 50%;
   margin: 0.25em;
   padding: 0.5em;
-  border: 1px solid var(--light-grey);
+  border: 1px solid var(--dark-green);
   max-width: 250px;
   gap: 10px;
-  & h2,
-  h3,
-  p {
-    margin: 0.5em;
+
+ 
+  &:hover {
+    background-color: rgb(232, 239, 232);
+    box-shadow: 0 0 10px gray;
+    border: none;
+    transform: scale(1.01);
+    transition: all .2s ease-in;
+    
   }
 }
 
@@ -196,16 +201,16 @@ button.clicked {
 /* Start cart list card styles */
 .cart-card {
   display: grid;
-  grid-template-columns: 25% 50% auto;
+  grid-template-columns: repeat(6, auto);
   font-size: var(--small-font);
   /* max-height: 120px; */
   align-items: center;
   width: 100%;
   padding: 2%;
-  background-color: #d1d3c5;
+  background-color: rgb(232, 239, 232);
   &:hover {
-    box-shadow: 0 0 10px black;
-    transition: all 0.2s ease;
+    box-shadow: 0 0 10px gray;
+    transition: all 0.2s ease-in;
   }
 }
 
@@ -257,9 +262,9 @@ button.clicked {
   margin-left: 8px;
 }
 .cart-card__total {
-  float: right;
-  clear: both;
-  padding: 2%;
+  display: block;
+  text-align: right;
+  margin-right: 10px
 }
 
 .alert-list {
@@ -277,7 +282,14 @@ button.clicked {
 .cart-card {
   display: flex;
   justify-content: space-evenly;
+  gap: 15px;
 }
+.oldPrice {
+  text-decoration: line-through;
+  font-size: medium;
+  color: rgb(191, 3, 3);
+}
+
 
 .sproing {
   animation: sproing 0.8s ease-in-out forwards;
@@ -375,7 +387,8 @@ button.clicked {
 .product-list .product-card {
   list-style-type: none;
   width: 200px;
-  margin: 10px;
+  /* margin: 10px; */
+  
 }
 
 .product-list .product-card img {
@@ -386,8 +399,11 @@ button.clicked {
 .product-list .product-card h3,
 .product-list .product-card h2,
 .product-list .product-card p {
-  margin: 5px 0;
-  text-align: center;
+  margin: 10px;
+  text-align: left;
+}
+.product-card__price {
+  font-weight: 700;
 }
 
 @media screen and (min-width: 500px) {
