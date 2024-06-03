@@ -7,10 +7,10 @@ export function shoppingCart() {
   renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
   addRemoveItemEventListeners();
   cartTotal(cartItems);
-  console.log(cartItems)
 }
 
  function cartItemTemplate(item, index) {
+  let toFixed = item.FinalPrice.toFixed(2)
   const newItem = `<li class="cart-card divider">
     <a href="/product_pages/index.html?product=${item.Id}" class="cart-card__image">
       <img
@@ -23,7 +23,7 @@ export function shoppingCart() {
     </a>
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
     <p class="cart-card__quantity">qty: 1</p>
-    <p class="cart-card__price"><strong>$${item.FinalPrice}</strong></p>
+    <p class="cart-card__price"><strong>$${toFixed}</strong></p>
     <button class="remove-item" data-index="${index}">Delete</button>
   </li>`;
 
