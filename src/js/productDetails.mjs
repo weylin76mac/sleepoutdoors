@@ -15,6 +15,7 @@ export default async function productDetails(productId) {
 
 function addToCart() {
   const currCart = getLocalStorage("so-cart") || [];
+  
   animateAddToCart();
   checkDuplicates(currCart);
 }
@@ -52,7 +53,11 @@ function checkDuplicates(currCart) {
   )
 
   if (existingProductIndex === -1) {
+    products.qty = 1;
     currCart.push(products);
     setLocalStorage("so-cart", currCart);
-  } 
+  } else {
+    currCart[existingProductIndex].qty += 1;
+    setLocalStorage("so-cart", currCart);
+  }
 }

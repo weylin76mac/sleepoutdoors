@@ -1,15 +1,17 @@
 import { getLocalStorage, renderListWithTemplate } from "./utils.mjs";
-import { addRemoveItemEventListeners, cartTotal } from "./cart.js";
+import { addRemoveItemEventListeners, quantityEventListeners, cartTotal } from "./cart.js";
 
 export function shoppingCart() {
   const cartItems = getLocalStorage("so-cart");
   const outputEl = document.querySelector(".product-list");
   renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
   addRemoveItemEventListeners();
+  quantityEventListeners();
   cartTotal(cartItems);
 }
 
  function cartItemTemplate(item, index) {
+  let itemTotalPrice = item.qty * item.FinalPrice;
   const newItem = `<li class="cart-card divider">
     <a href="#" class="cart-card__image">
       <img
@@ -17,13 +19,35 @@ export function shoppingCart() {
         alt="${item.Name}"
       />
     </a>
-    <a href="#">
-      <h2 class="card__name">${item.Name}</h2>
-    </a>
-    <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-    <p class="cart-card__quantity">qty: 1</p>
-    <p class="cart-card__price"><strong>$${item.FinalPrice}</strong></p>
-    <button class="remove-item" data-index="${index}">Delete</button>
+    <div class="cart-card-sub">
+      <h3>Item:</h3>
+      <a href="#">
+        <h2 class="card__name">${item.Name}</h2>
+      </a>
+    </div>
+    <div class="cart-card-sub">
+    <h3>Color:</h3>
+      <div class="cart-card__color">
+        ${item.Colors[0].ColorName}
+      </div>
+    </div>
+    <div class="cart-card-sub">
+      <h3>Qty:</h3>
+      <div class="quantity-selector">  
+        <button id="decrease" class="quantity-button" data-index="${index}">-</button>
+        <input type="number" id="quantity-input${index}" class="quantity-input" value="${item.qty}" min="1" data-index="${index}" />
+        <button id="increase" class="quantity-button" data-index="${index}">+</button>
+      </div>
+    </div>
+    <div class="cart-card-sub">
+      <h3>Price:</h3>
+      <div class="cart-card__price">
+        <strong>$${itemTotalPrice.toFixed(2)}</strong>
+      </div>
+    </div>
+        <button class="remove-item" data-index="${index}">
+          Remove
+        </button>
   </li>`;
 
   return newItem;

@@ -10,6 +10,7 @@
   --tertiary-color: #a4b8c4;
   --light-grey: #d0d0d0;
   --dark-grey: #303030;
+  --card-bg: #d1d3c5;
   --hover: color-mix(in oklab, var(--secondary-color) 70%, black);
   /* sizes */
   --font-base: 18px;
@@ -92,11 +93,11 @@ button {
   background-color: var(--secondary-color);
   color: white;
   margin: auto;
-  display: block;
+  /* display: block; */
   border: 0;
   font-size: var(--large-font);
   cursor: pointer;
-  position: relative;
+  /* position: relative; */
   z-index: 2;
   transition: all 0.35s ease;
   &:hover {
@@ -105,6 +106,13 @@ button {
     transition: all 0.3s ease;
   }
 }
+
+button.remove-item {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+}
+
 
 button.clicked {
   filter: brightness(140%);
@@ -196,13 +204,15 @@ button.clicked {
 /* Start cart list card styles */
 .cart-card {
   display: grid;
-  grid-template-columns: 25% 50% auto;
+  grid-template-columns: 1fr 2fr 1fr;
+  justify-content: space-evenly;
   font-size: var(--small-font);
-  /* max-height: 120px; */
-  align-items: center;
+  align-items: start;
   width: 100%;
   padding: 2%;
-  background-color: #d1d3c5;
+  background-color: var(--card-bg);
+  gap: 1rem;
+  position: relative;
   &:hover {
     box-shadow: 0 0 10px black;
     transition: all 0.2s ease;
@@ -210,9 +220,9 @@ button.clicked {
 }
 
 .cart-card__image {
-  grid-row: 1/3;
-  grid-column: 1;
+  align-self: center;
 }
+
 .cart-card p {
   margin-top: 0;
 }
@@ -230,10 +240,10 @@ button.clicked {
   font-weight: 600;
 }
 
-.cart-card__quantity {
+/* .cart-card__quantity {
   grid-row: 1;
   grid-column: 3;
-}
+} */
 
 .cart-card__price {
   grid-row: 2;
@@ -262,6 +272,48 @@ button.clicked {
   padding: 2%;
 }
 
+/* Start Quantity Selector */
+.quantity-selector {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-button, .quantity-input {
+  height: 3rem;
+  width: 3rem;
+  text-align: center;
+  font-size: 1.5rem;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  padding: 0;
+  cursor: pointer;
+}
+
+.quantity-button {
+  background-color: var(--secondary-color)
+}
+
+.quantity-button:active, .quantity-input:focus {
+  background-color: #e0e0e0;
+}
+
+.quantity-input {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.quantity-input:focus {
+    outline: none;
+}
+
+/* End Quantity Selector */
+
 .alert-list {
   padding: 10px;
   margin: 10px 0;
@@ -274,10 +326,7 @@ button.clicked {
   font-size: 1em;
 }
 
-.cart-card {
-  display: flex;
-  justify-content: space-evenly;
-}
+
 
 .sproing {
   animation: sproing 0.8s ease-in-out forwards;
@@ -400,7 +449,7 @@ button.clicked {
   }
   .cart-card {
     font-size: inherit;
-    grid-template-columns: 150px auto 15%;
+    /* grid-template-columns: 150px auto 15%; */
   }
 }
 
