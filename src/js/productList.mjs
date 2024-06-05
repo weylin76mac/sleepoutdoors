@@ -1,16 +1,9 @@
 import { getData } from "./productData.mjs";
-import { renderListWithTemplate } from "./utils.mjs";
+import { renderListWithTemplate, capitalize } from "./utils.mjs";
 
-export function discount(SuggestedRetailPrice, FinalPrice) {
-    const priceDifference = SuggestedRetailPrice - FinalPrice;
-    const discPercentage = (priceDifference / SuggestedRetailPrice) * 100;
-    return discPercentage.toFixed(0);
-}
+
 
 function productCardTemplate(product) {
-
-  const disc = discount(product.SuggestedRetailPrice,product.FinalPrice)
- 
     return `
     <li class="product-card">
       <a href="/product_pages/index.html?product=${product.Id}">
@@ -20,8 +13,9 @@ function productCardTemplate(product) {
       />
       <h3 class="card__brand">${product.Brand.Name}</h3>
       <h2 class="card__name">${product.NameWithoutBrand}</h2>
-      <p class="product-card__price">$${product.FinalPrice}</p>
-      <p class= "cart-card__discount">${disc}% Off. Save Today!</p></a>
+      <p class="oldPrice">$${product.SuggestedRetailPrice.toFixed(2)}</p>
+      <p class="product-card__price">$${product.FinalPrice.toFixed(2)}</p>
+      
     </li>
     `;
   }
@@ -30,11 +24,12 @@ export default async function productList(selector, category) {
     const element = document.querySelector(selector);
 
     const brandList = document.getElementById("brandList");
-
+    
     // Fetch the list of products
     let products = await getData(category);
-    console.log(products);
-
+    //console.log(products);
+    
+    document.querySelector('.title').innerHTML = `| ${capitalize(category)}`
     // Function to get unique brands from products and sort them alphabetically
     function getSortedBrands(sortedProducts) {
         let brandNames = [];
@@ -85,13 +80,16 @@ export default async function productList(selector, category) {
         const filteredProducts = products.filter(product => product.Brand && product.Brand.Name === brand);
         renderListWithTemplate(productCardTemplate, element, filteredProducts);
     }
-
+    
     // Initial rendering of product list
     renderListWithTemplate(productCardTemplate, element, products);
+   
 
     // Get sorted brands and render the brand list
     const sortedBrands = getSortedBrands(products);
+    
     renderBrandList(sortedBrands);
+    
 }
 
 

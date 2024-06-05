@@ -12,13 +12,15 @@ export function shoppingCart() {
 
  function cartItemTemplate(item, index) {
   let itemTotalPrice = item.qty * item.FinalPrice;
+
   const newItem = `<li class="cart-card divider">
-    <a href="#" class="cart-card__image">
+    <a href="/product_pages/index.html?product=${item.Id}" class="cart-card__image">
       <img
         src="${item.Images.PrimarySmall}"
         alt="${item.Name}"
       />
     </a>
+
     <div class="cart-card-sub">
       <h3>Item:</h3>
       <a href="#">
@@ -48,6 +50,7 @@ export function shoppingCart() {
         <button class="remove-item" data-index="${index}">
           Remove
         </button>
+
   </li>`;
 
   return newItem;

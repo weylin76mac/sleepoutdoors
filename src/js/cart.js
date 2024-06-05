@@ -1,7 +1,6 @@
 import {
   getLocalStorage,
   setLocalStorage,
-  loadHeaderFooter,
 } from "./utils.mjs";
 import { shoppingCart } from "./shoppingCart.mjs";
 
@@ -103,5 +102,6 @@ function inputCartQuantity() {
   }
 };
 
-loadHeaderFooter(); 
+//loadHeaderFooter(); 
 shoppingCart();
+
