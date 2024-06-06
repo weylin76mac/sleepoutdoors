@@ -96,6 +96,7 @@ const checkoutProcess = {
     try {
       const res = await checkout(json);
       console.log(res);
+      return res;
     } catch (err) {
       console.log(err);
     }
