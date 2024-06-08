@@ -10,12 +10,16 @@ export function cartTotal(items) {
     let r = listItems.FinalPrice;
     sum += r;
   }
+
+  let checkout = document.querySelector(".checkout");
   let total = document.querySelector(".cart-card__total");
   if (sum === 0) {
     total.style.display = "none";
+    checkout.style.display = 'none'
   } else {
     total.style.display = "block";
     total.innerHTML = `<strong>Total: $${sum.toFixed(2)}</strong>`;
+    checkout.style.display = "block";
   }
 }
 
