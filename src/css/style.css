@@ -403,23 +403,45 @@ button.clicked {
 
 /* Breadcrumbs styles */
 .breadcrumbs {
-  font-size: 1em;
-  color: var(--dark-grey);
-  margin: 1em 0;
+  font-size: 1.5em;
+  color: #4B5320; 
+  margin: 1.5em 0; 
+  font-family: 'Arial, sans-serif'; 
+  display: flex;
+  align-items: center;
+  font-weight: 900;
 }
 
 .breadcrumbs a {
-  color: var(--secondary-color);
+  color: #6B8E23;
   text-decoration: none;
 }
 
 .breadcrumbs a:hover {
+  color: #8FBC8F; 
   text-decoration: underline;
 }
 
 .breadcrumbs span {
   margin: 0 5px;
+  color: #4B5320; 
 }
+
+/* Add icons to the breadcrumb for a more visual hierarchy */
+.breadcrumbs a::before {
+  content: "▶"; 
+  margin-right: 5px;
+  color: #4B5320; 
+}
+
+.breadcrumbs a:first-of-type::before {
+  content: ""; 
+}
+
+.breadcrumbs a:hover::before {
+  color: #8FBC8F; 
+}
+
 
 @media screen and (min-width: 500px) {
   body {
@@ -433,6 +455,8 @@ button.clicked {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
   }
+  .breadcrumbs {
+    font-size: 1.2em;
 }
 
 footer {
@@ -498,3 +522,5 @@ footer {
   width: 25%;
   font-size: 1em;
 }
+
+
