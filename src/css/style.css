@@ -167,14 +167,12 @@ button.clicked {
   max-width: 250px;
   gap: 10px;
 
- 
   &:hover {
     background-color: rgb(232, 239, 232);
     box-shadow: 0 0 10px gray;
     border: none;
     transform: scale(1.01);
-    transition: all .2s ease-in;
-    
+    transition: all 0.2s ease-in;
   }
 }
 
@@ -194,9 +192,8 @@ button.clicked {
   margin: auto;
   & img {
     width: 100%;
-  } 
+  }
 }
-
 
 /* Start cart list card styles */
 .cart-card {
@@ -264,7 +261,7 @@ button.clicked {
 .cart-card__total {
   display: block;
   text-align: right;
-  margin-right: 10px
+  margin-right: 10px;
 }
 
 .alert-list {
@@ -289,7 +286,6 @@ button.clicked {
   font-size: medium;
   color: rgb(191, 3, 3);
 }
-
 
 .sproing {
   animation: sproing 0.8s ease-in-out forwards;
@@ -388,7 +384,6 @@ button.clicked {
   list-style-type: none;
   width: 200px;
   /* margin: 10px; */
-  
 }
 
 .product-list .product-card img {
@@ -404,6 +399,26 @@ button.clicked {
 }
 .product-card__price {
   font-weight: 700;
+}
+
+/* Breadcrumbs styles */
+.breadcrumbs {
+  font-size: 1em;
+  color: var(--dark-grey);
+  margin: 1em 0;
+}
+
+.breadcrumbs a {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs span {
+  margin: 0 5px;
 }
 
 @media screen and (min-width: 500px) {
@@ -457,7 +472,6 @@ footer {
 .product-grid a:hover {
   text-decoration: underline;
 }
-
 
 /* CHECKOUT FORM STYLING STEP 3 WEEK 7 part 2 */
 .checkout-form {
