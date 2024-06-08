@@ -1,7 +1,4 @@
-import {
-  getLocalStorage,
-  setLocalStorage,
-} from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 import { shoppingCart } from "./shoppingCart.mjs";
 
 // Calculate the $total in the cart. If cart its empty the word total
@@ -38,5 +35,5 @@ function removeItemFromCart(event) {
   shoppingCart(); // Re-render the cart contents
 }
 
-// loadHeaderFooter(); 
+// loadHeaderFooter();
 shoppingCart();
