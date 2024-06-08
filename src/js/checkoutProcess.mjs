@@ -57,7 +57,7 @@ const checkoutProcess = {
     // calculate the total of all the items in the cart
     const amounts = this.list.map((item) => item.FinalPrice);
     this.itemTotal = amounts.reduce((sum, item) => sum + item);
-    summaryElement.innerText = "$" + this.itemTotal;
+    summaryElement.innerHTML = "$" + this.itemTotal.toFixed(2);
   },
 
   // STEP 4 Calculate the total costs
@@ -80,7 +80,7 @@ const checkoutProcess = {
     );
     shipping.innerText = "$" + this.shipping;
     tax.innerText = "$" + this.tax;
-    orderTotal.innerText = "$" + this.orderTotal;
+    orderTotal.innerHTML = `<strong>$${this.orderTotal}</strong>`;
   },
 
   // STEP 6 WEEK 7
