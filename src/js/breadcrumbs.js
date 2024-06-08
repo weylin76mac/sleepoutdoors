@@ -27,11 +27,38 @@ document.addEventListener("DOMContentLoaded", () => {
         if (path.includes("product-list")) {
             const categoryName = category ? category.charAt(0).toUpperCase() + category.slice(1) : "Category"; // Capitalize the category name
 
-            // Wait for the products to load and then count the visible products
-            setTimeout(() => {
+            // Function to update breadcrumb with the current visible products count
+            function updateBreadcrumbCount() {
                 const itemCount = countVisibleProducts();
                 updateBreadcrumb(categoryName, itemCount);
-            }, 500); 
+            }
+
+            // Initial breadcrumb update
+            updateBreadcrumbCount();
+
+            // Attach a MutationObserver to the product list to watch for changes
+            const productListElement = document.getElementById("productList");
+            if (productListElement) {
+                const observer = new MutationObserver(() => {
+                    // Update the breadcrumb whenever the product list changes
+                    updateBreadcrumbCount();
+                });
+
+                // Start observing the product list for changes
+                observer.observe(productListElement, { childList: true, subtree: true });
+
+                // Optionally, handle the case when filters are applied directly
+                // This assumes filters add or remove 'li' elements from the list
+                const filterButtons = document.querySelectorAll('.filter-button');
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        // Short delay to wait for the product list update
+                        setTimeout(() => {
+                            updateBreadcrumbCount();
+                        }, 100);
+                    });
+                });
+            }
         } else {
             // Hide the breadcrumb for home page or any undefined path
             breadcrumbElement.style.display = "none";
