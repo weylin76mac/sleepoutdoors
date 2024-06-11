@@ -7,6 +7,7 @@
   --primary-color: #f0a868;
   --secondary-color: #525b0f;
   --dark-green: #394213;
+  --light-green: rgb(232, 239, 232);
   --tertiary-color: #a4b8c4;
   --light-grey: #d0d0d0;
   --dark-grey: #303030;
@@ -87,7 +88,7 @@ header {
   color: var(--tertiary-color);
 }
 
-button {
+button{
   padding: 0.5em 2em;
   background-color: var(--secondary-color);
   color: white;
@@ -115,6 +116,24 @@ button.clicked {
 }
 /* End utility classes */
 
+/* Modal style */
+.modal {
+  display: none;
+  background-color: var(--light-green);
+  padding: 15px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  text-align: center;
+  position: relative;
+  color: var(--dark-green);
+}
+.close {
+  position: absolute;
+  cursor: pointer;
+  right: 1.5em;
+  top: 1em;
+  font-weight: 800;
+}
 /* Cart icon styles */
 .cart {
   padding-top: 1em;
@@ -167,14 +186,12 @@ button.clicked {
   max-width: 250px;
   gap: 10px;
 
- 
   &:hover {
-    background-color: rgb(232, 239, 232);
+    background-color: var(--light-green);
     box-shadow: 0 0 10px gray;
     border: none;
     transform: scale(1.01);
-    transition: all .2s ease-in;
-    
+    transition: all 0.2s ease-in;
   }
 }
 
@@ -194,9 +211,8 @@ button.clicked {
   margin: auto;
   & img {
     width: 100%;
-  } 
+  }
 }
-
 
 /* Start cart list card styles */
 .cart-card {
@@ -207,7 +223,7 @@ button.clicked {
   align-items: center;
   width: 100%;
   padding: 2%;
-  background-color: rgb(232, 239, 232);
+  background-color: var(--light-green);
   &:hover {
     box-shadow: 0 0 10px gray;
     transition: all 0.2s ease-in;
@@ -261,10 +277,32 @@ button.clicked {
   display: flex;
   margin-left: 8px;
 }
+.cart-footer-hide {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  align-items: center;
+  color: var(--dark-green);
+  font-weight: 700;
+  font-size: var(--large-font);
+  & a {
+    text-decoration: none;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 0.5em 2em;
+    width: 40%;
+    transition: all 0.35s ease;
+    &:hover {
+      color: white;
+      background-color: var(--hover);
+      transition: all 0.3s ease;
+    }
+  }
+}
+
 .cart-card__total {
-  display: block;
   text-align: right;
-  margin-right: 10px
+  margin-right: 10px;
 }
 
 .alert-list {
@@ -289,7 +327,6 @@ button.clicked {
   font-size: medium;
   color: rgb(191, 3, 3);
 }
-
 
 .sproing {
   animation: sproing 0.8s ease-in-out forwards;
@@ -388,7 +425,6 @@ button.clicked {
   list-style-type: none;
   width: 200px;
   /* margin: 10px; */
-  
 }
 
 .product-list .product-card img {
@@ -406,6 +442,48 @@ button.clicked {
   font-weight: 700;
 }
 
+/* Breadcrumbs styles */
+.breadcrumbs {
+  font-size: 1.5em;
+  color: #4B5320; 
+  margin: 1.5em 0; 
+  font-family: 'Arial, sans-serif'; 
+  display: flex;
+  align-items: center;
+  font-weight: 900;
+}
+
+.breadcrumbs a {
+  color: #6B8E23;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  color: #8FBC8F; 
+  text-decoration: underline;
+}
+
+.breadcrumbs span {
+  margin: 0 5px;
+  color: #4B5320; 
+}
+
+/* Add icons to the breadcrumb for a more visual hierarchy */
+.breadcrumbs a::before {
+  content: "▶"; 
+  margin-right: 5px;
+  color: #4B5320; 
+}
+
+.breadcrumbs a:first-of-type::before {
+  content: ""; 
+}
+
+.breadcrumbs a:hover::before {
+  color: #8FBC8F; 
+}
+
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -418,6 +496,8 @@ button.clicked {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
   }
+  .breadcrumbs {
+    font-size: 1.2em;
 }
 
 footer {
@@ -434,6 +514,14 @@ footer {
   text-align: center;
   color: var(--dark-grey);
   padding-left: 0;
+  
+  & a {
+    text-decoration: none;
+  }
+  & :hover {
+    transform: scale(1.04);
+    transition: transform .3s ease-out;
+  }
 }
 
 .product-grid > li {
@@ -444,43 +532,90 @@ footer {
 }
 .product-grid h2 {
   margin: 0;
-
   font-size: 1.2em;
+  position: relative;
 }
-.product-grid a {
-  text-decoration: none;
+
+.product-grid h2::after {
+  content: '';
+  position: absolute;
+  bottom: -.05em;
+  width: 100%;
+  left: 0;
+  height: 1px;
+  background-color: var(--dark-green);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform .3s ease-out;
 }
+
 .product-grid a:link,
 .product-grid a:visited {
   color: var(--dark-grey);
 }
-.product-grid a:hover {
-  text-decoration: underline;
+.product-grid li h2:hover::after {
+  transform: scale(1);
+  border: 1px solid var(--dark-green);
+  transform-origin: bottom left;
 }
-
 
 /* CHECKOUT FORM STYLING STEP 3 WEEK 7 part 2 */
 .checkout-form {
   padding: 0.5em;
+  width: 700px;
+  margin-inline: auto;
+  & button {
+    margin-top: 10px;
+  }
+
 }
 .checkout-form label {
   display: block;
+  padding-top: .5rem;
 }
 .checkout-form input {
   width: 100%;
   font-size: 1.2em;
+  padding: 4px;
+  &:focus:invalid {
+    border: 1px solid red;
+  }
+  
+}
+.formRequire {
+  color: red;
 }
 
 .checkout-summary > ul {
+  padding: 10px;
   padding-left: 0;
   list-style-type: none;
+  border: 3px solid var(--dark-green);
+  width: 600px;
+  margin-inline: auto;
+  
 }
 .checkout-summary li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 .4em;
 }
 .checkout-summary input {
   width: 25%;
   font-size: 1em;
+}
+
+fieldset {
+  border: 1px solid var(--dark-green);
+  background-color: var(--light-green);
+  margin-top: 20px;
+}
+
+legend {
+  font-weight: 600;
+  color: var(--dark-green);
+}
+
+
 }

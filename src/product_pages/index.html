@@ -11,14 +11,16 @@
     <link rel="stylesheet" href="../css/style.css" />
 
     <script src="../js/product.js" type="module"></script>
+    <script src="../js/breadcrumbs.js"></script>
   </head>
 
   <body>
-    <header class="divider" id="main-header">
-     
-    </header>
+    <header class="divider" id="main-header"></header>
 
     <main class="divider">
+      <!-- Breadcrumbs Section -->
+      <nav id="breadcrumbs" class="breadcrumbs"></nav>
+
       <section class="product-detail">
         <h3 id="productName"></h3>
         <h2 class="divider" id="productNameWithoutBrand"></h2>
@@ -26,7 +28,7 @@
         <p class="product-card__price" id="productFinalPrice"></p>
         <div class="tag">
           <p class="cart-card__discount"></p>
-          <img id="tagImage" alt="Tag price" class="tag-price">
+          <img id="tagImage" alt="Tag price" class="tag-price" />
         </div>
         <p class="product__color" id="productColorName"></p>
         <p class="product__description" id="productDescriptionHtmlSimple"></p>

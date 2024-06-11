@@ -12,41 +12,41 @@
     <main class="divider checkout">
       <h2>Review & Place your Order</h2>
       <section class="checkout-form">
-        <form name="checkout">
+        <form name="checkout" class="orderForm">
           <fieldset>
             <legend>Shipping</legend>
             <div class="checkout__name">
-              <label for="fname">First Name</label>
-              <input name="fname" id="fname" required />
-              <label for="lname" >Last Name</label>
-              <input name="lname" id="lname" required />
+              <label for="fname">First Name<span class="formRequire">*</span></label>
+              <input name="fname" id="fname" required>
+              <label for="lname" >Last Name<span class="formRequire">*</span></label>
+              <input name="lname" id="lname" required>
             </div>
             <div class="checkout__address">
-              <label for="street">Street</label>
-              <input name="street" id="street" required />
-              <label for="city">City</label>
-              <input name="city" id="city" required />
-              <label for="state">State</label>
-              <input name="state" id="state" required />
-              <label for="zip">Zip</label>
-              <input name="zip" id="zip" required />
+              <label for="street">Street<span class="formRequire">*</span></label>
+              <input name="street" id="street" required>
+              <label for="city">City<span class="formRequire">*</span></label>
+              <input name="city" id="city" required>
+              <label for="state">State<span class="formRequire">*</span></label>
+              <input name="state" id="state" required>
+              <label for="zip">Zip<span class="formRequire">*</span></label>
+              <input name="zip" id="zip" required>
             </div>
           </fieldset>
           <fieldset>
             <legend>Payment</legend>
-            <label for="cardNumber">Card number</label>
-            <input name="cardNumber" id="cardNumber" required />
-            <label for="expiration">Expiration</label>
-            <input name="expiration" id="expiration" required />
-            <label for="code"  >Security Code</label>
-            <input name="code" id="code" required />
+            <label for="cardNumber">Card number<span class="formRequire">*</span></label>
+            <input name="cardNumber" id="cardNumber" required>
+            <label for="expiration">Expiration<span class="formRequire">*</span></label>
+            <input name="expiration" id="expiration" required>
+            <label for="code"  >Security Code<span class="formRequire">*</span></label>
+            <input name="code" id="code" required>
           </fieldset>
           <fieldset class="checkout-summary">
             <legend>Order Summary</legend>
             <ul>
               <li>
                 <label for="cartTotal"
-                  >Item Subtotal(<span id="num-items"></span>)</label
+                  >Item Subtotal (<span id="num-items"></span>)</label
                 >
                 <p name="cartTotal" id="cartTotal"></p>
               </li>

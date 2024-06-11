@@ -1,7 +1,4 @@
-import {
-  getLocalStorage,
-  setLocalStorage,
-} from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 import { shoppingCart } from "./shoppingCart.mjs";
 
 // Calculate the $total in the cart. If cart its empty the word total
@@ -13,12 +10,16 @@ export function cartTotal(items) {
     let r = listItems.FinalPrice;
     sum += r;
   }
+
+  let checkout = document.querySelector(".checkout");
   let total = document.querySelector(".cart-card__total");
   if (sum === 0) {
     total.style.display = "none";
+    checkout.style.display = 'none'
   } else {
     total.style.display = "block";
     total.innerHTML = `<strong>Total: $${sum.toFixed(2)}</strong>`;
+    checkout.style.display = "block";
   }
 }
 
@@ -39,6 +40,6 @@ function removeItemFromCart(event) {
 }
 
 
-
 // loadHeaderFooter(); 
+
 shoppingCart();
