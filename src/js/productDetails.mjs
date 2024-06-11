@@ -11,14 +11,23 @@ export default async function productDetails(productId) {
     if (!products) {
       // Product not found, handle the error gracefully
       displayErrorMessage("Product not found");
-
-
-function addToCart() {
-  const currCart = getLocalStorage("so-cart") || [];
-  
-  animateAddToCart();
-  checkDuplicates(currCart);
+      const addToCartButton = document.getElementById("addToCart");
+      if (addToCartButton) {
+        addToCartButton.style.display = "none";
+      }
+      return;
+    }
+    // Once we have the product details we can render out the HTML
+    renderProductDetails();
+    // Once the HTML is rendered we can add a listener to Add to Cart button
+    document.getElementById("addToCart").addEventListener("click", addToCart);
+  } catch (error) {
+    // Handle any unexpected errors
+    console.error("Error fetching product details:", error);
+    displayErrorMessage("An error has occurred while fetching product details");
+  }
 }
+  
 
 function renderProductDetails() {
   let priceFixed = products.FinalPrice.toFixed(2);
@@ -29,7 +38,7 @@ function renderProductDetails() {
   document.querySelector("#productFinalPrice").innerHTML = `<strong>$${priceFixed}</strong>`;
   let discounts = discount(products.SuggestedRetailPrice || 0, products.FinalPrice || 0);
   document.querySelector(".cart-card__discount").innerHTML = `${discounts}% Off`;
-  document.querySelector('#tagImage').src = "/images/logos/price-tag.png";
+  document.querySelector("#tagImage").src = "/images/logos/price-tag.png";
   document.querySelector("#productColorName").innerText = products.Colors?.[0]?.ColorName || "N/A";
   document.querySelector("#productDescriptionHtmlSimple").innerHTML = products.DescriptionHtmlSimple || "N/A";
   document.querySelector("#addToCart").dataset.id = products.Id;
