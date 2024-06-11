@@ -1,4 +1,4 @@
-import { getData } from "./productData.mjs";
+import { getProductsByCategory } from "./externalServices.mjs";
 import { renderListWithTemplate, capitalize } from "./utils.mjs";
 
 
@@ -26,7 +26,7 @@ export default async function productList(selector, category) {
     const brandList = document.getElementById("brandList");
     
     // Fetch the list of products
-    let products = await getData(category);
+    let products = await getProductsByCategory(category);
     //console.log(products);
     
     document.querySelector('.title').innerHTML = `| ${capitalize(category)}`
