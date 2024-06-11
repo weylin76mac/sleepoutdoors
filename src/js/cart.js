@@ -15,6 +15,7 @@ export function cartTotal(items) {
   
  
   let total = document.querySelector(".cart-card__total");
+  let checkout = document.querySelector('.checkout')
   if (sum === 0) {
     total.style.display = "none";
     checkout.style.display = "none"
