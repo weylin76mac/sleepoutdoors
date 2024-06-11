@@ -109,7 +109,6 @@ button{
 }
 
 button.remove-item {
-  position: absolute;
   bottom: 12px;
   right: 12px;
 }
