@@ -39,6 +39,12 @@ export function renderListWithTemplate(
   if (clear) {
     parentElement.innerHTML = "";
   }
+  
+  if (!list || list.length === 0) {
+    parentElement.innerHTML = "<p>Your cart is empty</p>";
+    return;
+  }
+  
   const htmlString = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlString.join(""));
 }
