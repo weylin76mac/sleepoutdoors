@@ -5,20 +5,20 @@ import { discount } from "./utils.mjs";
 let products = {};
 
 export default async function productDetails(productId) {
-  try {
+  try { // <-- Opening bracket for try block
     // Get the details for the current product. findProductById will return a promise, so use await or .then() to process it
     products = await findProductById(productId);
     if (!products) {
       // Product not found, handle the error gracefully
       displayErrorMessage("Product not found");
-
-
-function addToCart() {
-  const currCart = getLocalStorage("so-cart") || [];
-  
-  animateAddToCart();
-  checkDuplicates(currCart);
-}
+      return; // <-- Return to exit the function if product is not found
+    }
+    renderProductDetails(); // <-- Call to render product details if product is found
+  } catch (error) {
+    console.error("Error fetching product details:", error);
+    displayErrorMessage("An error occurred while fetching product details");
+  } // <-- Closing bracket for try block
+} // <-- Closing bracket for productDetails function
 
 function renderProductDetails() {
   let priceFixed = products.FinalPrice.toFixed(2);
