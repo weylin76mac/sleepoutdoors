@@ -11,6 +11,7 @@ export default async function productDetails(productId) {
     if (!products) {
       // Product not found, handle the error gracefully
       displayErrorMessage("Product not found");
+      
       const addToCartButton = document.getElementById("addToCart");
       if (addToCartButton) {
         addToCartButton.style.display = "none";
@@ -84,16 +85,10 @@ function checkDuplicates(currCart, product) {
   );
 
   if (existingProductIndex === -1) {
-
-    products.qty = 1;
-    currCart.push(products);
-    setLocalStorage("so-cart", currCart);
-  } else {
-    currCart[existingProductIndex].qty += 1;
+    currCart.push(product);
     setLocalStorage("so-cart", currCart);
   }
 }
-
 
 function displayErrorMessage(message) {
   alert(message); // Use alert or any other method to display the error message

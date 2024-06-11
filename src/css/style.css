@@ -142,23 +142,39 @@ button.clicked {
   font-weight: 800;
 }
 /* Cart icon styles */
+
+/* Mosiah made these changes for the backpack counter*/
 .cart {
   padding-top: 1em;
   position: relative;
   text-align: center;
-
-  & svg {
-    width: 28px;
-    stroke: var(--primary-color);
-  }
-  & a {
-    text-decoration: none;
-  }
 }
+
+.cart svg {
+  width: 28px;
+  stroke: var(--primary-color);
+}
+
+.cart a {
+  text-decoration: none;
+  position: relative; /* Ensure relative positioning */
+}
+
 .cart:hover svg {
   fill: var(--secondary-color);
 }
 
+.cart-count {
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-20%, -150%); 
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 15px;
+}
 /* End cart icon styles */
 
 .mission {
@@ -535,6 +551,7 @@ button.clicked {
 }
 
 
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -667,6 +684,5 @@ legend {
   font-weight: 600;
   color: var(--dark-green);
 }
-
 
 }
