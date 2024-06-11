@@ -22,7 +22,6 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
-// Mosiah added this
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -80,6 +79,7 @@ function loadTemplate(path) {
 } 
 
 export async function loadHeaderFooter() {
+  console.log("loading header and footer...")
   const headerTemplateFn = loadTemplate("/partials/header.html");
   const footerTemplateFn = loadTemplate("/partials/footer.html");
   const headerEl = document.querySelector("#main-header");

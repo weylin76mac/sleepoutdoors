@@ -53,16 +53,18 @@ const checkoutProcess = {
     const itemNumElement = document.querySelector(
       this.outputSelector + " #num-items"
     );
-    itemNumElement.innerText = this.list.length;
+    const totalQuantity = this.list.map((item) => item.qty)
+    this.totalItems = totalQuantity.reduce((sum, item) => sum + item); 
+    itemNumElement.innerText = this.totalItems;
     // calculate the total of all the items in the cart
-    const amounts = this.list.map((item) => item.FinalPrice);
+    const amounts = this.list.map((item) => item.FinalPrice * item.qty);
     this.itemTotal = amounts.reduce((sum, item) => sum + item);
     summaryElement.innerHTML = "$" + this.itemTotal.toFixed(2);
   },
 
   // STEP 4 Calculate the total costs
   calculateOrdertotal: function () {
-    this.shipping = 10 + (this.list.length - 1) * 2;
+    this.shipping = (10 + (this.totalItems - 1) * 2).toFixed(2);
     this.tax = (this.itemTotal * 0.06).toFixed(2);
     this.orderTotal = (
       parseFloat(this.itemTotal) +
