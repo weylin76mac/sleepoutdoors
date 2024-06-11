@@ -60,6 +60,7 @@ function removeItemFromCart(event) {
 }
 
 
+
 function decreaseCartQuantity() {
   const index = this.dataset.index;
   const quantityInput = document.querySelectorAll(".quantity-input");
@@ -102,5 +103,6 @@ function inputCartQuantity() {
 };
 
 //loadHeaderFooter(); 
+
 shoppingCart();
 

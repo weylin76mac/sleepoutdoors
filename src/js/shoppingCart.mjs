@@ -2,7 +2,7 @@ import { getLocalStorage, renderListWithTemplate } from "./utils.mjs";
 import { addRemoveItemEventListeners, quantityEventListeners, cartTotal } from "./cart.js";
 
 export function shoppingCart() {
-  const cartItems = getLocalStorage("so-cart");
+  const cartItems = getLocalStorage("so-cart")|| [];
   const outputEl = document.querySelector(".product-list");
   renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
   addRemoveItemEventListeners();
