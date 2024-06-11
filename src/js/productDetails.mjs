@@ -5,20 +5,29 @@ import { discount } from "./utils.mjs";
 let products = {};
 
 export default async function productDetails(productId) {
-  try { // <-- Opening bracket for try block
+  try {
     // Get the details for the current product. findProductById will return a promise, so use await or .then() to process it
     products = await findProductById(productId);
     if (!products) {
       // Product not found, handle the error gracefully
       displayErrorMessage("Product not found");
-      return; // <-- Return to exit the function if product is not found
+
+      const addToCartButton = document.getElementById("addToCart");
+      if (addToCartButton) {
+        addToCartButton.style.display = "none";
+      }
+      return;
     }
-    renderProductDetails(); // <-- Call to render product details if product is found
+    // Once we have the product details we can render out the HTML
+    renderProductDetails();
+    // Once the HTML is rendered we can add a listener to Add to Cart button
+    document.getElementById("addToCart").addEventListener("click", addToCart);
   } catch (error) {
+    // Handle any unexpected errors
     console.error("Error fetching product details:", error);
-    displayErrorMessage("An error occurred while fetching product details");
-  } // <-- Closing bracket for try block
-} // <-- Closing bracket for productDetails function
+    displayErrorMessage("An error has occurred while fetching product details");
+  }
+}
 
 function renderProductDetails() {
   let priceFixed = products.FinalPrice.toFixed(2);
@@ -75,16 +84,10 @@ function checkDuplicates(currCart, product) {
   );
 
   if (existingProductIndex === -1) {
-
-    products.qty = 1;
-    currCart.push(products);
-    setLocalStorage("so-cart", currCart);
-  } else {
-    currCart[existingProductIndex].qty += 1;
+    currCart.push(product);
     setLocalStorage("so-cart", currCart);
   }
 }
-
 
 function displayErrorMessage(message) {
   alert(message); // Use alert or any other method to display the error message

@@ -64,6 +64,14 @@ export async function renderWithTemplate(
   if (callback) {
     callback(data);
   }
+
+  //Mosiahs changes, Camila was a life saver on this!
+  //This is where the Backpack number is coming from!
+  const totalitmes = document.getElementById("cartCount");
+  // Updates the Number of items in the backpack!
+  const currCart = getLocalStorage("so-cart") || [];
+  const numberOfItems = currCart.length;
+  totalitmes.innerHTML = numberOfItems; 
 }
 
 function loadTemplate(path) {
