@@ -86,7 +86,7 @@ header {
 
 /* utility classes */
 .highlight {
-  color: var(--tertiary-color);
+  color: #8FBC8F;
 }
 
 button{
@@ -108,10 +108,10 @@ button{
   }
 }
 
-button.remove-item {
+/* button.remove-item {
   bottom: 12px;
   right: 12px;
-}
+} */
 
 
 button.clicked {
@@ -238,52 +238,84 @@ button.clicked {
 }
 
 /* Start cart list card styles */
+
 .cart-card {
   display: grid;
-  grid-template-columns: repeat(6, auto);
-  font-size: var(--small-font);
-  align-items: start;
+  grid-template-columns: 120px 1fr auto;
+  grid-template-rows: auto;
+  font-size: var(--small-font); 
   width: 100%;
   padding: 2%;
-  background-color: var(--card-bg);
-  gap: 1rem;
-  position: relative;
-
-  &:hover {
+  background-color: var(--light-green);
+  gap: 25px;
+  color: var(--dark-green);
+  & a:hover {
     box-shadow: 0 0 10px gray;
-    transition: all 0.2s ease-in;
+    transform: scale(1.02);
+    transition: all 0.2s ease;
   }
 }
-
 .cart-card__image {
-  align-self: center;
+  justify-self: center;
+  width: 100%;
+  grid-row: 1;
+  grid-column: 1;
+  padding-inline: 1% ;
+  padding-top: 20px;
+  padding-bottom: 2%;
+  align-items: center;
+  background-color: white;
 }
 
-.cart-card p {
-  margin-top: 0;
+.view-detail img {
+  width: 100%;
 }
+
 .cart-card .card__name {
   grid-row: 1;
   grid-column: 2;
-  color: var(--dark-green);
+  padding: 0;
+  font-style: italic;
+  font-family: var(--font-subheadings);
+  font-size: 22px;
 }
 
 .cart-card__color {
-  grid-row: 2;
+  grid-row: 1;
   grid-column: 2;
-  padding: 2%;
   font-family: var(--font-sub-title);
   font-weight: 600;
+  & h4 {
+    display: inline;
+  }
 }
 
-/* .cart-card__quantity {
+.cart-card__quantity {
   grid-row: 1;
-  grid-column: 3;
-} */
+  grid-column: 2;
+}
 
 .cart-card__price {
-  grid-row: 2;
-  grid-column: 3;
+  grid-row: 1;
+  grid-column: 3/4;
+  align-self: start;
+ text-align: right;
+ 
+ & p {
+  margin-top: -10px;
+ }
+
+}
+.view-detail p{
+  color: var(--secondary-color);
+  width: 100%;
+  text-align: center;
+  padding: 5%;
+  font-weight: 700;
+  font-size: 18px;
+  &:hover {
+    color: var(--dark-green);
+  }
 }
 
 .cart-card__discount {
@@ -291,6 +323,7 @@ button.clicked {
   color: rgb(189, 9, 9);
   font-size: smaller;
 }
+
 .tag {
   display: flex;
   align-items: center;
@@ -302,6 +335,7 @@ button.clicked {
   display: flex;
   margin-left: 8px;
 }
+
 .cart-footer-hide {
   display: grid;
   grid-template-columns: auto auto;
@@ -331,20 +365,27 @@ button.clicked {
 }
 
 /* Start Quantity Selector */
+.quantity-selector h4 {
+  display: inline;
+
+}
 .quantity-selector {
-  display: flex;
-  align-items: center;
+  padding: 3% 0;
 }
 
 .quantity-button, .quantity-input {
-  height: 3rem;
-  width: 3rem;
+  height: 2rem;
+  width: 2rem;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
   border: 1px solid #ccc;
   background-color: #f9f9f9;
-  padding: 0;
+  padding: 1%;
   cursor: pointer;
+}
+
+.quantity-input {
+  margin-inline: -5px;
 }
 
 .quantity-button {
@@ -359,15 +400,31 @@ button.clicked {
   -moz-appearance: textfield;
   appearance: textfield;
 }
+.remove-item{
+  margin-left: 10px;
+  margin-top: 40%;
+}
 
 .quantity-input::-webkit-outer-spin-button,
 .quantity-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
-    margin: 0;
 }
 
 .quantity-input:focus {
     outline: none;
+}
+.empty-cart-img {
+  width: 25%;
+  display: block;
+  color: var(--dark-green);
+  font-weight: 600;
+  & img {
+    width: 40%;
+  }
+  & :hover {
+    transform: scale(1.2);
+    transition: transform .3s ease;
+  }
 }
 
 /* End Quantity Selector */
@@ -383,12 +440,16 @@ button.clicked {
   border-radius: 5px;
   font-size: 1em;
 }
+.cart-card-sub {
+  display: static;
+  
+}
 
-.cart-card {
+/* .cart-card {
   display: flex;
   justify-content: space-evenly;
   gap: 15px;
-}
+} */
 .oldPrice {
   text-decoration: line-through;
   font-size: medium;
@@ -536,20 +597,15 @@ button.clicked {
 }
 
 /* Add icons to the breadcrumb for a more visual hierarchy */
-.breadcrumbs a::before {
-  content: "▶"; 
+.breadcrumbs a::after {
+  content: "\2192"; 
   margin-right: 5px;
   color: #4B5320; 
-}
-
-.breadcrumbs a:first-of-type::before {
-  content: ""; 
 }
 
 .breadcrumbs a:hover::before {
   color: #8FBC8F; 
 }
-
 
 
 @media screen and (min-width: 500px) {
@@ -635,12 +691,13 @@ footer {
   & button {
     margin-top: 10px;
   }
-
 }
+
 .checkout-form label {
   display: block;
   padding-top: .5rem;
 }
+
 .checkout-form input {
   width: 100%;
   font-size: 1.2em;
@@ -648,7 +705,6 @@ footer {
   &:focus:invalid {
     border: 1px solid red;
   }
-  
 }
 .formRequire {
   color: red;

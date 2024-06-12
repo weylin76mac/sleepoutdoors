@@ -6,7 +6,7 @@ export function cartTotal(items) {
   let sum = 0;
 
   // Debugging output to inspect items
-  console.log("Cart items for total calculation:", items);
+  //console.log("Cart items for total calculation:", items);
 
   items.forEach((item) => {
     // Ensure item has valid price and quantity
@@ -14,7 +14,7 @@ export function cartTotal(items) {
     const quantity = parseInt(item.qty, 10) || 1; // Default to 1 if qty is missing or invalid
 
     // Debugging output to inspect item price and quantity
-    console.log(`Item price: $${price}, Quantity: ${quantity}`);
+    //console.log(`Item price: $${price}, Quantity: ${quantity}`);
 
     sum += (quantity * price);
   });
@@ -30,7 +30,7 @@ export function cartTotal(items) {
     checkout.style.display = "none";
   } else {
     total.style.display = "block";
-    total.innerHTML = `<strong>Total: $${sum.toFixed(2)}</strong>`;
+    total.innerHTML = `<strong>Subtotal: $${sum.toFixed(2)}</strong>`;
     checkout.style.display = "block";
   }
 }
