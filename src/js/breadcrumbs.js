@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to update the breadcrumb
   function updateBreadcrumb(category, count) {
     breadcrumbElement.innerHTML =
-      '<a href="/index.html">Home</a> -> <span>' +
+      '<a href="/index.html">Home </a>  <span>' +
       category +
-      "</span> -> <span>(" +
+      " (" +
       count +
       " items)</span>";
   }

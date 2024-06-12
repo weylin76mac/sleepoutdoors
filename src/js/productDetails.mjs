@@ -63,7 +63,7 @@ function addProductToCart(product) {
 
   // Get the number of items in local storage and display it on the console
   const numberOfItems = currCart.length;
-  console.log("Number of items in local storage:", numberOfItems);
+  //console.log("Number of items in local storage:", numberOfItems);
 }
 
 function animateAddToCart() {
