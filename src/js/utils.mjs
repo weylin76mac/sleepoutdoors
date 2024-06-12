@@ -41,7 +41,7 @@ export function renderListWithTemplate(
   
   if (!list || list.length === 0) {
     parentElement.innerHTML =
-      '<div class="empty-cart-img"><p>Your cart is empty</p><a href="/index.html" title="Home"/><img src="/images/logos/shopping-cart.png" alt="empty shopping cart"></a></div>';
+      '<div class="empty-cart-img"><p>Your cart is empty</p><a href="/index.html" title="Home"/><img src="/images/logos/shopping-cart.png" alt="empty shopping cart created by Taufik - Flaticon"></a></div>';
     return;
   }
   
