@@ -31,7 +31,7 @@ export default async function productDetails(productId) {
   
 
 function renderProductDetails() {
-  let priceFixed = products.FinalPrice.toFixed(2);
+  let priceFixed = products.FinalPrice ? products.FinalPrice.toFixed(2) : "0.00";
   document.querySelector("#productName").innerText = products.Brand?.Name || "N/A";
   document.querySelector("#productNameWithoutBrand").innerText = products.NameWithoutBrand || "N/A";
   document.querySelector("#productImage").src = products.Images?.PrimaryMedium || "";
