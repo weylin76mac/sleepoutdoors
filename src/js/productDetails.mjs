@@ -1,6 +1,6 @@
+import { doc } from "prettier";
 import { findProductById } from "./externalServices.mjs";
-import { getLocalStorage, setLocalStorage, addClass, sendBallAnimation, replaceText } from "./utils.mjs";
-import { discount } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, addClass, sendBallAnimation, replaceText, alertMessage, discount } from "./utils.mjs";
 
 let products = {};
 
@@ -51,9 +51,12 @@ async function addToCart(e) {
     const product = await findProductById(productId);
     addProductToCart(product);
     animateAddToCart();
+    alertMessage(`${product.NameWithoutBrand} added to cart`)
+    let alerts = document.querySelector('.alert')
+    setTimeout(() => alerts.remove(), 3000);
   } catch (error) {
     console.error("Error adding product to cart:", error);
-    displayErrorMessage("An error has occurred while adding the product to the cart");
+    
   }
 }
 
@@ -94,6 +97,6 @@ function checkDuplicates(currCart, product) {
   }
 }
 
-function displayErrorMessage(message) {
-  alert(message); // Use alert or any other method to display the error message
-}
+// function displayErrorMessage(message) {
+//   alert(message); // Use alert or any other method to display the error message
+// }

@@ -1,5 +1,5 @@
 // STEP 4 WEEK 7 PART 1!
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, removeAllAlerts, alertMessage } from "./utils.mjs";
 import { checkout } from "./externalServices.mjs";
 
 // STEP 6 WEEK 7
@@ -98,9 +98,17 @@ const checkoutProcess = {
     try {
       const res = await checkout(json);
       console.log(res);
+      setLocalStorage("so-cart", []);
+      location.assign("/checkout/success.html");
       return res;
+      
     } catch (err) {
+      removeAllAlerts();
       console.log(err);
+      for (let message in err.message) {
+        console.log(message)
+        alertMessage(err.message[message]);
+      }
     }
   },
 };
