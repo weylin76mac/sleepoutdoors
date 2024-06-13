@@ -85,7 +85,11 @@ function checkDuplicates(currCart, product) {
   );
 
   if (existingProductIndex === -1) {
-    currCart.push(product);
+    products.qty = 1;
+    currCart.push(products);
+    setLocalStorage("so-cart", currCart);
+  } else {
+    currCart[existingProductIndex].qty += 1;
     setLocalStorage("so-cart", currCart);
   }
 }
