@@ -1,6 +1,4 @@
-
-
-
+import { alertMessage } from "./utils.mjs";
 
 function createModal() {
     const modal = document.createElement("div");
@@ -40,7 +38,7 @@ function addEvent() {
     })
     // Button
     btn.addEventListener('click', () => {
-        alert('Thank you for registering! Look out for an email with the details.')
+        alertMessage('Thank you for registering! Look out for an email with the details.')
         modal.style.display = 'none'
     })
 }

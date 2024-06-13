@@ -1,12 +1,12 @@
 [
   {
-    "message": "This is a message.",
-    "background": "darkblue",
-    "color": "white"
+    "message": "Don't miss out our clearance section!",
+    "background": "#d1d3c5",
+    "color": "#394213"
   },
   {
-    "message": "Another great message.",
-    "background": "red",
+    "message": "Check out our best deals on camping gear!",
+    "background": "#394213",
     "color": "white"
   }
 ]

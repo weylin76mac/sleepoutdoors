@@ -430,7 +430,7 @@ button.clicked {
 /* End Quantity Selector */
 
 .alert-list {
-  padding: 10px;
+  padding: 2px 5px;
   margin: 10px 0;
 }
 
@@ -439,6 +439,27 @@ button.clicked {
   margin: 5px 0;
   border-radius: 5px;
   font-size: 1em;
+}
+.alert {
+  margin-top: 10px;
+  padding: 0.01em 1em;
+  border: 1px solid var(--dark-green);
+  border-radius: 4px;
+  color: var(--dark-green);
+  background-color: var(--light-green);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  & span{
+    cursor: pointer;
+    font-weight: 600;
+    padding: 0.01em 1em;
+    font-size: larger;
+    justify-self: stretch;
+    &:hover {
+      color: #8FBC8F;
+    }
+  }
 }
 .cart-card-sub {
   display: static;
