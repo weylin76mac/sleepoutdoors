@@ -440,10 +440,22 @@ button.clicked {
   border-radius: 5px;
   font-size: 1em;
 }
+.alert::before {
+  content: "\2713";
+  background-color: var(--dark-green);
+  color: white;
+  display: flex;
+  align-self: stretch;
+  font-size: larger;
+ text-align: center;
+  
+  padding: 1% 0.5em;
+}
 .alert {
   margin-top: 10px;
   padding: 0.01em 1em;
   border: 1px solid var(--dark-green);
+  padding-left: 0;
   border-radius: 4px;
   color: var(--dark-green);
   background-color: var(--light-green);
@@ -455,12 +467,13 @@ button.clicked {
     font-weight: 600;
     padding: 0.01em 1em;
     font-size: larger;
-    justify-self: stretch;
+    justify-self: start;
     &:hover {
       color: #8FBC8F;
     }
   }
 }
+
 .cart-card-sub {
   display: static;
   
