@@ -52,8 +52,6 @@ async function addToCart(e) {
     addProductToCart(product);
     animateAddToCart();
     alertMessage(`${product.NameWithoutBrand} added to cart`)
-    let alerts = document.querySelector('.alert')
-    setTimeout(() => alerts.remove(), 3000);
   } catch (error) {
     console.error("Error adding product to cart:", error);
     

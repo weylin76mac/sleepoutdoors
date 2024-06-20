@@ -41,7 +41,7 @@ export function renderListWithTemplate(
   
   if (!list || list.length === 0) {
     parentElement.innerHTML =
-      '<div class="empty-cart-img"><p>Your cart is empty</p><a href="/index.html" title="Home"/><img src="/images/logos/shopping-cart.png" alt="empty shopping cart created by Taufik - Flaticon"></a></div>';
+      `<div class="empty-cart-img"><p>Your cart is empty</p><a href="/index.html" title="Home"/><img src="/images/logos/shopping-cart.png" alt="empty shopping cart created by Taufik - Flaticon"></a></div>`;
     return;
   }
   
@@ -169,7 +169,7 @@ export function discount(SuggestedRetailPrice, FinalPrice) {
 export function alertMessage(message, scroll = true, duration = 3000) {
   const alert = document.createElement("div");
   alert.classList.add("alert");
-  alert.innerHTML = `<p>${message}</p><span>X</span>`;
+  alert.innerHTML = `<p>${message}</p><span title="Close">X</span>`;
 
   alert.addEventListener("click", function (e) {
     if (e.target.tagName == "SPAN") {
@@ -183,9 +183,9 @@ export function alertMessage(message, scroll = true, duration = 3000) {
   if (scroll) window.scrollTo(0, 0);
 
   // left this here to show how you could remove the alert automatically after a certain amount of time.
-  // setTimeout(function () {
-  //   main.removeChild(alert);
-  // }, duration);
+  setTimeout(function () {
+    main.removeChild(alert);
+  }, duration);
 }
 
 export function removeAllAlerts() {
