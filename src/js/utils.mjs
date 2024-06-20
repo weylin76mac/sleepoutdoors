@@ -68,11 +68,11 @@ export async function renderWithTemplate(
 
   //Mosiahs changes, Camila was a life saver on this!
   //This is where the Backpack number is coming from!
-  const totalitmes = document.getElementById("cartCount");
+  const totalitems = document.getElementById("cartCount");
   // Updates the Number of items in the backpack!
   const currCart = getLocalStorage("so-cart") || [];
   const numberOfItems = currCart.length;
-  totalitmes.innerHTML = numberOfItems; 
+  totalitems.innerHTML = numberOfItems; 
 }
 
 function loadTemplate(path) {
