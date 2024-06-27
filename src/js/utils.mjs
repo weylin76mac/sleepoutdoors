@@ -192,3 +192,21 @@ export function removeAllAlerts() {
   const alerts = document.querySelectorAll(".alert");
   alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
 }
+
+// Determine the appropriate image size based on screen width
+export function getImageSizeForScreen() {
+  const screenWidth = window.innerWidth;
+  let imageSize;
+
+  if (screenWidth < 600) {
+    imageSize = "PrimarySmall";
+  } else if (screenWidth < 1200) {
+    imageSize = "PrimaryMedium";
+  } else if (screenWidth < 1600) {
+    imageSize = "PrimaryLarge";
+  } else {
+    imageSize = "PrimaryExtraLarge";
+  }
+
+  return imageSize;
+}
