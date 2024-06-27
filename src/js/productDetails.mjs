@@ -1,6 +1,5 @@
-import { doc } from "prettier";
 import { findProductById } from "./externalServices.mjs";
-import { getLocalStorage, setLocalStorage, addClass, sendBallAnimation, replaceText, alertMessage, discount } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, addClass, sendBallAnimation, replaceText, alertMessage, discount, getImageSizeForScreen } from "./utils.mjs";
 
 let products = {};
 
@@ -31,17 +30,30 @@ export default async function productDetails(productId) {
   
 
 function renderProductDetails() {
-  let priceFixed = products.FinalPrice ? products.FinalPrice.toFixed(2) : "0.00";
+  // Update Image Size based on screen
+  const imageSize = getImageSizeForScreen();
+  //console.log(imageSize)
+  const imgUrl = products.Images ? products.Images[imageSize] : "";
+  let priceFixed = products.FinalPrice ? products.FinalPrice.toFixed(2): "0.00";
   document.querySelector("#productName").innerText = products.Brand?.Name || "N/A";
   document.querySelector("#productNameWithoutBrand").innerText = products.NameWithoutBrand || "N/A";
-  document.querySelector("#productImage").src = products.Images?.PrimaryMedium || "";
+  document.querySelector("#productImage").src = imgUrl || "";
   document.querySelector("#productImage").alt = products.Name || "N/A";
-  document.querySelector("#productFinalPrice").innerHTML = `<strong>$${priceFixed}</strong>`;
-  let discounts = discount(products.SuggestedRetailPrice || 0, products.FinalPrice || 0);
-  document.querySelector(".cart-card__discount").innerHTML = `${discounts}% Off`;
+  document.querySelector(
+    "#productFinalPrice"
+  ).innerHTML = `<strong>$${priceFixed}</strong>`;
+  let discounts = discount(
+    products.SuggestedRetailPrice || 0,
+    products.FinalPrice || 0
+  );
+  document.querySelector(
+    ".cart-card__discount"
+  ).innerHTML = `${discounts}% Off`;
   document.querySelector("#tagImage").src = "/images/logos/price-tag.png";
-  document.querySelector("#productColorName").innerText = products.Colors?.[0]?.ColorName || "N/A";
-  document.querySelector("#productDescriptionHtmlSimple").innerHTML = products.DescriptionHtmlSimple || "N/A";
+  document.querySelector("#productColorName").innerText =
+    products.Colors?.[0]?.ColorName || "N/A";
+  document.querySelector("#productDescriptionHtmlSimple").innerHTML =
+    products.DescriptionHtmlSimple || "N/A";
   document.querySelector("#addToCart").dataset.id = products.Id;
 }
 

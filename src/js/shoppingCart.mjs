@@ -1,4 +1,4 @@
-import { getLocalStorage, renderListWithTemplate } from "./utils.mjs";
+import { getLocalStorage, renderListWithTemplate, getImageSizeForScreen } from "./utils.mjs";
 import { addRemoveItemEventListeners, quantityEventListeners, cartTotal } from "./cart.js";
 
 export function shoppingCart() {
@@ -13,6 +13,8 @@ export function shoppingCart() {
 function cartItemTemplate(item, index) {
   const unitPrice = item.FinalPrice || 0;
   const itemTotalPrice = unitPrice * (item.qty || 1);
+  const imageSize = getImageSizeForScreen(); // Update image size
+  const imgUrl = item.Images[imageSize];
 
   const newItem = `  
   <li class="cart-card divider">
@@ -22,7 +24,7 @@ function cartItemTemplate(item, index) {
     }" class="cart-card__image">
       <div class="view-detail">
         <img
-        src="${item.Images.PrimarySmall}"
+        src="${imgUrl}"
         alt="${item.Name}"
         />
         <p>View Details</p>
