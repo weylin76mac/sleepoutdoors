@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const signupButton = document.getElementById("signup-button");
   if (signupButton) {
     signupButton.addEventListener("click", () => {
-      location.href = "other_pages/newsletter.html";
+      location.href = "../other_pages/newsletter.html";
     });
   }
 });
