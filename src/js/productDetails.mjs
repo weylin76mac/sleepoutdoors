@@ -95,6 +95,6 @@ function checkDuplicates(currCart, product) {
   }
 }
 
-// function displayErrorMessage(message) {
-//   alert(message); // Use alert or any other method to display the error message
-// }
+function displayErrorMessage(message) {
+  alert(message); // Use alert or any other method to display the error message
+ }
